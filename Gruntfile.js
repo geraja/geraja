@@ -1,0 +1,99 @@
+module.exports = function(grunt) {
+  require('load-grunt-tasks')(grunt);
+
+  var mozjpeg = require('imagemin-mozjpeg');
+
+  grunt.initConfig({
+    clean: ['public'],
+
+    sass: {
+      dist: {
+        options: {
+          style: 'compressed',
+          loadPath: 'bower_components'
+        },
+        files: {
+          'public/css/main.css': 'assets/sass/main.scss'
+        }
+      },
+
+      dev: {
+        options: {
+          style: 'expanded'
+        },
+        files: {
+          'public/css/main.css': 'assets/sass/main.scss'
+        }
+      }
+    },
+
+    watch: {
+      sass: {
+        files: 'assets/sass/*.scss',
+        tasks: ['sass:dev', 'imagemin']
+      },
+      php: {
+          files: ['app/**/*.php']
+      }
+    },
+
+    concat: {
+      options: {
+        separator: ';',
+        compress: true,
+      },
+      dist: {
+        src: [
+        'bower_components/jquery/dist/jquery.min.js',
+        'assets/js/main.js',
+        ],
+        dest: 'public/javascript/master.js'
+      }
+    },
+
+    uglify: {
+      options: {
+        mangle: false
+      },
+
+      frontend: {
+        files: {
+          'public/javascript/master.js': 'public/javascript/master.js'
+        }
+      }
+    },
+
+    imagemin: {
+      dynamic: {
+        options: {
+          optimizationLevel: 3,
+          svgoPlugins: [{ removeViewBox: false }],
+          use: [mozjpeg()]
+        },
+        files: [{
+          expand: true,
+          cwd: './assets/images/',
+          src: ['**/*.{png,jpg,gif,svg}'],
+          dest: './public/images/'
+        }]
+      }
+    },
+
+    browserSync: {
+      dev: {
+        bsFiles: {
+          src: ['app/**/*.php', 'public/css/**/*.css']
+        },
+        options: {
+          watchTask: true,
+          proxy: 'http://localhost/gerador-de-jogos/'
+        }
+      }
+    },
+
+  });
+
+  grunt.registerTask('clean_public', ['clean']);
+  grunt.registerTask('build', ['sass:dist', 'concat', 'uglify', 'imagemin']);
+  grunt.registerTask('default', ['build', 'browserSync', 'watch']);
+};

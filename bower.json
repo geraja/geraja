@@ -1,0 +1,22 @@
+{
+  "name": "gerador-de-jogos",
+  "authors": [
+    "Isânio Moraes <isanio@yahoo.com>"
+  ],
+  "description": "Codeigniter app for Gerador de Jogos",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "^3.3.6"
+  }
+}

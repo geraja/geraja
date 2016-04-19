@@ -1,0 +1,10 @@
+{
+    "name": "isanio/gerador-de-jogos",
+    "authors": [
+        {
+            "name": "Isânio Moraes",
+            "email": "isanio@yahoo.com"
+        }
+    ],
+    "require": {}
+}
