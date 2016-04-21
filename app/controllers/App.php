@@ -5,13 +5,16 @@ class App extends CI_Controller {
 
   public function index()
   {
-    $data['title'] = 'Página Inicial';
+    $data['page_title'] = 'Página Inicial';
     $this->template->load('main-template', 'pagina-inicial', $data);
   }
 
   public function jogo($unique_name = null)
   {
     if(!$unique_name) redirect(base_url(''));
+
+    $data['page_title'] = 'Demo';
+    $this->template->load('main-template', 'jogo', $data);
   }
 
 }

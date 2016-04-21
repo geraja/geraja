@@ -26,6 +26,6 @@
   ?>
   <?= $body; ?>
 </div>
-<script src="<?php echo base_url('public/javascript/master.js'); ?>"></script>
+<script src="<?php echo base_url('public/js/main.js'); ?>"></script>
 </body>
 </html>
