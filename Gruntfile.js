@@ -30,11 +30,15 @@ module.exports = function(grunt) {
     watch: {
       sass: {
         files: 'assets/sass/*.scss',
-        tasks: ['sass:dev', 'imagemin']
+        tasks: ['sass:dev']
       },
       php: {
           files: ['app/**/*.php']
-      }
+      },
+      js: {
+        files: ['assets/js/*.js'],
+        tasks: ['concat']
+      },
     },
 
     concat: {
@@ -47,7 +51,7 @@ module.exports = function(grunt) {
         'bower_components/jquery/dist/jquery.min.js',
         'assets/js/main.js',
         ],
-        dest: 'public/javascript/master.js'
+        dest: 'public/js/main.js'
       }
     },
 
@@ -58,7 +62,7 @@ module.exports = function(grunt) {
 
       frontend: {
         files: {
-          'public/javascript/master.js': 'public/javascript/master.js'
+          'public/js/main.js': 'public/js/main.js'
         }
       }
     },
@@ -82,7 +86,7 @@ module.exports = function(grunt) {
     browserSync: {
       dev: {
         bsFiles: {
-          src: ['app/**/*.php', 'public/css/**/*.css']
+          src: ['app/**/*.php', 'public/css/*.css', 'public/js/*.js']
         },
         options: {
           watchTask: true,
