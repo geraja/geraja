@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <?php
 
-  $the_title = isset($page_title) ? "$page_title - Gerador de Jogos" : "Gerador de Jogos";
+  $the_title = isset($page_title) ? "$page_title | Gerador de Jogos" : "Gerador de Jogos";
 
   ?>
   <title><?= $the_title; ?></title>
   <link rel="stylesheet" href="<?= base_url('public/css/main.css') ?>">
-  <link rel="icon" href="<?= base_url('public/images/favicon.png'); ?>">
+  <!-- <link rel="icon" href="<?= base_url('public/images/favicon.png'); ?>"> -->
 </head>
 <body>
   <div class="container-fluid clearfix">
