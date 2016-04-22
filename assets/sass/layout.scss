@@ -46,6 +46,8 @@ body {
 
   padding: 8px 20px;
   border-radius: 3px;
+
+  text-decoration: none;
 }
 
 .btn-default {
@@ -55,6 +57,14 @@ body {
 
 .btn-main {
 
+}
+
+.btn-link {
+  color: $grey-color;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .btn-action {
