@@ -34,16 +34,9 @@ $(function(){
   });
 
   $('.game-type-item').click(function(){
-
     $('.game-type-item').removeClass('selected');
     $(this).addClass('selected');
     typeGame = $(this).data('game-type');
-
-    $('.game-level-options .btn-action').blur();
-    $('.level-items li .btn').removeClass('selected');
-    $('.level-items li').first().children('.btn').addClass('selected');
-    changePage(2);
-
   });
 
   $('.btn-level').click(function(){
@@ -110,6 +103,7 @@ $(function(){
       typeGame = $('.game-type-item.selected').data('game-type');
 
       $('.game-level-options .btn-action').blur();
+      $('.level-items li .btn').removeClass('selected');
       $('.level-items li').first().children('.btn').addClass('selected');
       changePage(2);
     }
