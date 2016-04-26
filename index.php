@@ -53,7 +53,7 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-	define('ENVIRONMENT', isset(getenv('DEV_ENV')) ? getenv('DEV_ENV') : 'development');
+	define('ENVIRONMENT', getenv('ENV') ? getenv('ENV') : 'development');
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING

@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = ENVIRONMENT == 'production' ? 'https://isanio.com/apps/gerador-de-jogos/' : 'http://localhost/gerador-de-jogos/';
+$config['base_url'] = ENVIRONMENT == 'production' ? 'https://gerador-de-jogos.herokuapp.com/' : 'http://localhost/gerador-de-jogos/';
 
 /*
 |--------------------------------------------------------------------------

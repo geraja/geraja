@@ -97,10 +97,10 @@ $db['development'] = array(
 
 $db['production'] = array(
   'dsn' => '',
-  'hostname' => 'localhost',
-  'username' => 'root',
-  'password' => 'b385aaa59c0b7c9f4bd0e6615384bac6',
-  'database' => 'gerador_de_jogos',
+  'hostname' => getenv('DB_HOST'),
+  'username' => getenv('DB_USER'),
+  'password' => getenv('DB_PASS'),
+  'database' => getenv('DB_NAME'),
   'dbdriver' => 'mysqli',
   'dbprefix' => '',
   'pconnect' => FALSE,
