@@ -91,10 +91,10 @@
       </div>
 
       <div class="sounds-effects">
-        <audio src="<?= base_url('public/sounds/right-answer.mp3') ?>" class="audio right-answer">
+        <audio src="<?= base_url('public/sounds/right-answer.mp3') ?>" class="audio right-answer" preload="auto">
           <p>Seu navegador não suporta o elemento audio</p>
         </audio>
-        <audio src="<?= base_url('public/sounds/wrong-answer.mp3') ?>" class="audio wrong-answer">
+        <audio src="<?= base_url('public/sounds/wrong-answer.mp3') ?>" class="audio wrong-answer" preload="auto">
           <p>Seu navegador não suporta o elemento audio</p>
         </audio>
       </div>
