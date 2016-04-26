@@ -6,6 +6,14 @@ module.exports = function(grunt) {
   grunt.initConfig({
     clean: ['public'],
 
+    copy: {
+      fonts: {
+        files: [
+          {expand: true, cwd: 'assets/fonts/', src: ['**'], dest: 'public/fonts/'}
+        ]
+      }
+    },
+
     sass: {
       dist: {
         options: {
@@ -98,6 +106,6 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('clean_public', ['clean']);
-  grunt.registerTask('build', ['sass:dist', 'concat', 'uglify', 'imagemin']);
+  grunt.registerTask('build', ['sass:dist', 'concat', 'uglify', 'imagemin', 'copy']);
   grunt.registerTask('default', ['build', 'browserSync', 'watch']);
 };
