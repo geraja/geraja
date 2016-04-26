@@ -11,6 +11,12 @@ module.exports = function(grunt) {
         files: [
           {expand: true, cwd: 'assets/fonts/', src: ['**'], dest: 'public/fonts/'}
         ]
+      },
+
+      sounds: {
+        files: [
+          {expand: true, cwd: 'assets/sounds/', src: ['**'], dest: 'public/sounds/'}
+        ]
       }
     },
 
