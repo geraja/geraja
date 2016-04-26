@@ -1,7 +1,7 @@
 <div class="game clearfix">
   <div class="stage">
 
-    <section class="game-page page-select-type active" id="game-page-1">
+  <section class="game-page page-select-type" id="game-page-1">
       <div class="message message-important">
         Selecione um modo de jogo:
       </div>
@@ -47,13 +47,64 @@
     </section>
 
     <section class="game-page" id="game-page-3">
-      <h2>Tela do Jogo</h2>
+      <div class="game-example">
+        <div class="score">00</div>
+
+        <div class="treadmill">
+
+          <div class="question-container question-move">
+            <div class="question-items"></div>
+            <div class="question-base"></div>
+          </div>
+
+          <img src="<?= base_url('public/images/cog.svg'); ?>" alt="Encrenagem da esteira" width="25" height="25" class="rotating">
+          <img src="<?= base_url('public/images/cog.svg'); ?>" alt="Encrenagem da esteira" width="25" height="25" class="rotating">
+          <img src="<?= base_url('public/images/cog.svg'); ?>" alt="Encrenagem da esteira" width="25" height="25" class="rotating">
+          <img src="<?= base_url('public/images/cog.svg'); ?>" alt="Encrenagem da esteira" width="25" height="25" class="rotating">
+          <img src="<?= base_url('public/images/cog.svg'); ?>" alt="Encrenagem da esteira" width="25" height="25" class="rotating">
+          <img src="<?= base_url('public/images/cog.svg'); ?>" alt="Encrenagem da esteira" width="25" height="25" class="rotating">
+          <img src="<?= base_url('public/images/cog.svg'); ?>" alt="Encrenagem da esteira" width="25" height="25" class="rotating">
+          <img src="<?= base_url('public/images/cog.svg'); ?>" alt="Encrenagem da esteira" width="25" height="25" class="rotating">
+          <img src="<?= base_url('public/images/cog.svg'); ?>" alt="Encrenagem da esteira" width="25" height="25" class="rotating">
+          <img src="<?= base_url('public/images/cog.svg'); ?>" alt="Encrenagem da esteira" width="25" height="25" class="rotating">
+          <img src="<?= base_url('public/images/cog.svg'); ?>" alt="Encrenagem da esteira" width="25" height="25" class="rotating">
+          <img src="<?= base_url('public/images/cog.svg'); ?>" alt="Encrenagem da esteira" width="25" height="25" class="rotating">
+          <img src="<?= base_url('public/images/cog.svg'); ?>" alt="Encrenagem da esteira" width="25" height="25" class="rotating">
+        </div>
+
+        <div class="answers">
+          <ul class="list-custom list-answers">
+            <li>
+              <button type="button" class="btn btn-answer selected" data-answer="5">5</button>
+            </li>
+            <li>
+              <button type="button" class="btn btn-answer" data-answer="13">13</button>
+            </li>
+            <li>
+              <button type="button" class="btn btn-answer" data-answer="4">4</button>
+            </li>
+            <li>
+              <button type="button" class="btn btn-answer" data-answer="8">8</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sounds-effects">
+        <audio src="<?= base_url('public/sounds/right-answer.mp3') ?>" class="audio right-answer">
+          <p>Seu navegador não suporta o elemento audio</p>
+        </audio>
+        <audio src="<?= base_url('public/sounds/wrong-answer.mp3') ?>" class="audio wrong-answer">
+          <p>Seu navegador não suporta o elemento audio</p>
+        </audio>
+      </div>
     </section>
 
-    <section class="game-page" id="game-page-4">
-      <h2>Game over</h2>
+    <section class="game-page page-start-again" id="game-page-4">
+      <h2>Parabéns!<br>Você conseguiu 10 pontos.</h2>
+      <p>Tente jogar novamente em outro nível.</p>
       <p>
-        <button type="button" class="btn btn-action">Jogo novamente</button>
+        <button type="button" class="btn btn-action">Jogar Novamente</button>
       </p>
     </section>
 
