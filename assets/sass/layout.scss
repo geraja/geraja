@@ -141,6 +141,16 @@ body {
       text-align: center;
       cursor: pointer;
 
+      object {
+        width: 80px;
+        height: auto;
+
+        svg {
+          width: 80px;
+          height: auto;
+        }
+      }
+
       &:hover {
 
       }

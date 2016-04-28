@@ -88,13 +88,13 @@ $(function(){
     }
 
     if(keyCode == 37) {
-      if(typeGame === 'eyes-open') {
+      if(typeGame === 'vison-version') {
         $('.game-type-item:nth-of-type(2)').addClass('selected');
       } else {
         $('.game-type-item:nth-of-type(1)').addClass('selected');
       }
     } else if(keyCode == 39) {
-      if(typeGame === 'eyes-close') {
+      if(typeGame === 'audio-version') {
         $('.game-type-item:nth-of-type(1)').addClass('selected');
       } else {
         $('.game-type-item:nth-of-type(2)').addClass('selected');

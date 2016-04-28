@@ -6,13 +6,11 @@
         Selecione um modo de jogo:
       </div>
       <div class="game-type">
-        <div class="game-type-item selected" data-game-type="eyes-open">
+        <div class="game-type-item selected" data-game-type="vison-version">
           <object data="<?= base_url('public/images/eye.svg'); ?>" type="image/svg+xml"></object>
-          <h2>Olhos Abertos</h2>
         </div>
-        <div class="game-type-item" data-game-type="eyes-close">
-          <object data="<?= base_url('public/images/low-vision.svg'); ?>" type="image/svg+xml"></object>
-          <h2>Olhos Fechados</h2>
+        <div class="game-type-item" data-game-type="audio-version">
+          <object data="<?= base_url('public/images/audio-version.svg'); ?>" type="image/svg+xml"></object>
         </div>
       </div>
     </section>
