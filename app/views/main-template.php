@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <?php
 
-  $the_title = isset($page_title) ? "$page_title | Gerador de Jogos" : "Gerador de Jogos";
+  $the_title = isset($page_title) ? "$page_title | GeraJÁ" : "GeraJÁ";
 
   ?>
   <title><?= $the_title; ?></title>
