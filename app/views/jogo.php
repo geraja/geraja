@@ -1,7 +1,15 @@
 <div class="game clearfix">
   <div class="stage">
+    <section class="game-page page-loading active">
+      <div class="preloader text-center">
+        <h2>Carregando...</h2>
+        <div class="preloader-status">
+          <div class="preloader-bar"></div>
+        </div>
+      </div>
+    </section>
 
-  <section class="game-page page-select-type" id="game-page-1">
+    <section class="game-page page-select-type" id="game-page-1">
       <div class="message message-important">
         Selecione um modo de jogo:
       </div>
@@ -17,7 +25,7 @@
 
     <section class="game-page" id="game-page-2">
       <div class="message message-info">
-        Selecione o nível do jogo
+        Selecione a dificuldade do jogo
       </div>
 
       <div class="game-level-options">
@@ -89,10 +97,7 @@
       </div>
 
       <div class="sounds-effects">
-        <audio src="<?= base_url('public/sounds/right-answer.mp3') ?>" class="audio right-answer" preload="auto">
-          <p>Seu navegador não suporta o elemento audio</p>
-        </audio>
-        <audio src="<?= base_url('public/sounds/wrong-answer.mp3') ?>" class="audio wrong-answer" preload="auto">
+        <audio id="audio-player" preload="auto">
           <p>Seu navegador não suporta o elemento audio</p>
         </audio>
       </div>

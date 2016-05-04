@@ -259,7 +259,36 @@ body {
   }
 }
 
+/* | Game - preloader | */
+
+.preloader {
+
+  padding: 200px 20px 20px;
+
+  .preloader-status {
+    position: relative;
+    width: 400px;
+    margin: 0 auto;
+    height: 10px;
+    border-radius: 14px;
+    background-color: #efefef;
+    border: 1px solid #c3c3c3;
+    overflow: hidden;
+  }
+
+  .preloader-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    max-width: 100%;
+    background-color: $blue-color;
+  }
+}
+
 /* | Game - "engine" | */
+
 .score {
   position: absolute;
   top: 20px;
