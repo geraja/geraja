@@ -11,7 +11,7 @@
   ?>
   <title><?= $the_title; ?></title>
   <link rel="stylesheet" href="<?= base_url('public/css/main.css') ?>">
-  <!-- <link rel="icon" href="<?= base_url('public/images/favicon.png'); ?>"> -->
+  <link rel="icon" href="<?= base_url('public/images/favicon.png'); ?>">
 </head>
 <body>
   <div class="container-fluid clearfix">
