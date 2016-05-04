@@ -253,15 +253,15 @@ $(function(){
 
           audioPlayer.removeEventListener('ended', audioQuestionHandler, false);
 
-          var audioTiming = audios['clock-tick'];
-          $('.sounds-effects').append('<audio id="audio-timing" preload="auto" src="'+audioTiming+'" autoplay></audio>');
+          $('.clock-tick')[0].play();
           createOptionsAnswers(numberItems);
 
           // Time that the user has for choose answer
           gameTime = window.setTimeout(function() {
             playAudio('wrong-answer');
 
-            $('.sounds-effects #audio-timing').remove();
+            $('.clock-tick')[0].pause();
+            $('.clock-tick').prop('currentTime', 0);
 
             handleNewGameTime();
           }, 13100);
@@ -287,6 +287,7 @@ $(function(){
       }
 
       $('.question-container').addClass('question-move');
+      createOptionsAnswers(numberItems);
 
       // Time that the user has for choose answer
       gameTime = window.setTimeout(function() {
@@ -295,8 +296,6 @@ $(function(){
         newGame();
 
       }, 15600);
-
-      createOptionsAnswers(numberItems);
     }
   }
 
@@ -335,11 +334,14 @@ $(function(){
       var rightAnswer = numberItems;
 
       if(typeGame == 'audio-version') {
-        $('.sounds-effects #audio-timing').remove();
+        $('.clock-tick')[0].pause();
+        $('.clock-tick').prop('currentTime', 0);
       }
 
       // Clean timeout
       if(gameTime) window.clearTimeout(gameTime);
+
+      $('.list-answers li').remove();
 
       if(answer == rightAnswer) {
         // Right answer
@@ -359,17 +361,19 @@ $(function(){
         if(typeGame == 'audio-version') {
           handleNewGameTime();
         } else {
-         newGame();
+          newGame();
         }
       } else {
         resetGame();
 
         page = 4;
         changePage(page);
+
+        if(typeGame == 'audio-version') {
+          $('.muito-bem')[0].play();
+        }
       }
     }
-
-    $('.list-answers li').remove();
   }
 
   function handleNewGameTime() {
@@ -444,9 +448,16 @@ $(function(){
   }
 
   function playAudio(key) {
+    $('audio.playing').each(function () {
+     $(this)[0].pause();
+     $(this).prop('currentTime', 0);
+   });
+
+    $('audio').removeClass('playing');
+
     if(audios[key]) {
-      audioPlayer.src = audios[key];
-      audioPlayer.play();
+      $('.' + key)[0].play();
+      $('.' + key).addClass('playing');
     }
   }
 

@@ -100,6 +100,55 @@
         <audio id="audio-player" preload="auto">
           <p>Seu navegador não suporta o elemento audio</p>
         </audio>
+        <audio class="audio buzina-bicicleta" preload="auto" src="<?= base_url('public/sounds/buzina-bicicleta.mp3'); ?>"></audio>
+        <audio class="audio buzina-bicicleta-2" preload="auto" src="<?= base_url('public/sounds/buzina-bicicleta-2.mp3'); ?>"></audio>
+        <audio class="audio clock-tick" preload="auto" src="<?= base_url('public/sounds/clock-tick-v1.mp3'); ?>"></audio>
+        <audio class="audio jogar-novamente" preload="auto" src="<?= base_url('public/sounds/jogar-novamente.mp3'); ?>"></audio>
+        <audio class="audio jogar-ouvindo" preload="auto" src="<?= base_url('public/sounds/jogar-ouvindo.mp3'); ?>"></audio>
+        <audio class="audio jogar-vendo" preload="auto" src="<?= base_url('public/sounds/jogar-vendo.mp3'); ?>"></audio>
+        <audio class="audio latido" preload="auto" src="<?= base_url('public/sounds/latido.mp3'); ?>"></audio>
+        <audio class="audio muito-bem" preload="auto" src="<?= base_url('public/sounds/muito-bem.mp3'); ?>"></audio>
+        <audio class="audio numero-0" preload="auto" src="<?= base_url('public/sounds/numero-0.mp3'); ?>"></audio>
+        <audio class="audio numero-1" preload="auto" src="<?= base_url('public/sounds/numero-1.mp3'); ?>"></audio>
+        <audio class="audio numero-2" preload="auto" src="<?= base_url('public/sounds/numero-2.mp3'); ?>"></audio>
+        <audio class="audio numero-3" preload="auto" src="<?= base_url('public/sounds/numero-3.mp3'); ?>"></audio>
+        <audio class="audio numero-4" preload="auto" src="<?= base_url('public/sounds/numero-4.mp3'); ?>"></audio>
+        <audio class="audio numero-5" preload="auto" src="<?= base_url('public/sounds/numero-5.mp3'); ?>"></audio>
+        <audio class="audio numero-6" preload="auto" src="<?= base_url('public/sounds/numero-6.mp3'); ?>"></audio>
+        <audio class="audio numero-7" preload="auto" src="<?= base_url('public/sounds/numero-7.mp3'); ?>"></audio>
+        <audio class="audio numero-8" preload="auto" src="<?= base_url('public/sounds/numero-8.mp3'); ?>"></audio>
+        <audio class="audio numero-9" preload="auto" src="<?= base_url('public/sounds/numero-9.mp3'); ?>"></audio>
+        <audio class="audio numero-10" preload="auto" src="<?= base_url('public/sounds/numero-10.mp3'); ?>"></audio>
+        <audio class="audio right-answer" preload="auto" src="<?= base_url('public/sounds/right-answer.mp3'); ?>"></audio>
+        <audio class="audio selecione-dificuldade-jogo" preload="auto" src="<?= base_url('public/sounds/selecione-dificuldade-jogo.mp3'); ?>"></audio>
+        <audio class="audio selecione-modo-jogo" preload="auto" src="<?= base_url('public/sounds/selecione-modo-jogo.mp3'); ?>"></audio>
+        <audio class="audio passou-nivel" preload="auto" src="<?= base_url('public/sounds/voce-passou-nivel.mp3'); ?>"></audio>
+        <audio class="audio wrong-answer" preload="auto" src="<?= base_url('public/sounds/wrong-answer.mp3'); ?>"></audio>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       </div>
     </section>
 
