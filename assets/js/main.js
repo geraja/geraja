@@ -230,7 +230,7 @@ $(function(){
 
     if(typeGame == 'audio-version') {
       $treadmill.hide();
-      numberItems = getRandomInt(1, 4);
+      numberItems = getRandomInt(1, 9);
 
       items = ['latido', 'buzina-bicicleta', 'latido', 'buzina-bicicleta-2', 'latido', 'buzina-bicicleta-2', 'latido'];
       item = getRandomInt(0, items.length - 1);
@@ -303,7 +303,7 @@ $(function(){
   function createOptionsAnswers(_numberItems) {
     var rightAnswer = _numberItems;
     var optionsAnswers = [];
-    for(var n = 0; n <= 12; n++) {
+    for(var n = 0; n <= 10; n++) {
       optionsAnswers[n] = n;
     }
 
