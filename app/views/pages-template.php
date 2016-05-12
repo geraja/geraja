@@ -13,19 +13,22 @@
   <link rel="stylesheet" href="<?= base_url('public/css/main.css') ?>">
   <link rel="icon" href="<?= base_url('public/images/favicon.png'); ?>">
 </head>
-<body>
+<body class="page-template">
   <div class="container clearfix">
+    <?php $this->load->view('partials/menu-pages'); ?>
     <?php
-  /*
-  |----------------------------------------------------
-  | About $body
-  |----------------------------------------------------
-  | $body is provider by controller and passed to the
-  | template library (in libraries folder).
-  */
-  ?>
-  <?= $body; ?>
+    /*
+    |----------------------------------------------------
+    | About $body
+    |----------------------------------------------------
+    | $body is provider by controller and passed to the
+    | template library (in libraries folder).
+    */
+    ?>
+    <section class="main-content">
+      <?= $body; ?>
+    </section>
 </div>
-<script src="<?php echo base_url('public/js/main.js'); ?>"></script>
+
 </body>
 </html>

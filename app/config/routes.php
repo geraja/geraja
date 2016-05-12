@@ -53,4 +53,4 @@ $route['default_controller'] = 'app';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = true;
 
-$route['^(?!app|login|admin).*'] = "app/$0";
+$route['^(?!app|login|admin|gerenciador).*'] = "app/$0";

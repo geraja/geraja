@@ -3,26 +3,25 @@
 | Main config
 |----------------------------------------------------
 */
-html {
-  background-image: url(../images/bg-cream-pixels.png);
+html, body {
+  height: 100%;
 }
 
 body {
-  color: $grey-color;
+  color: $text-color;
   margin-top: 40px;
   font-family: $font-family;
 }
 
-.container-fluid {
-  max-width: 900px;
-  height: 560px;
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.container {
   padding: 0;
-
-  border-radius: 4px;
-  background-color: #fefefe;
-  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-
-  overflow: hidden;
+  max-width: $desktop-screen;
 }
 
 .list-custom {
@@ -31,9 +30,158 @@ body {
   padding: 0;
 }
 
-.text-center {
-  text-align: center;
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+
+a {
+  color: $brand-color;
 }
+
+.main-content {
+  padding: 20px;
+}
+/*
+|----------------------------------------------------
+| Templates
+|----------------------------------------------------
+*/
+
+/* | Pages template | */
+.page-template {
+  background-color: $grey-color;
+
+  .container {
+    background-color: #fff;
+
+    @media (min-width: $desktop-screen) {
+      min-height: 500px;
+    }
+  }
+
+  .page-section {
+    h1:first-child { margin-top: 0; }
+    & + .page-section { margin-top: 3em; }
+  }
+
+  .container-games {
+    .game-item {
+      text-align: center;
+
+      .game-thumb {
+        height: 140px;
+        border: 1px solid #eee;
+        background-color: #efefef;
+      }
+
+      .game-title {
+        font-size: 1.2em;
+
+        a {
+          @include reset-link;
+        }
+      }
+    }
+  }
+
+  .section-header {
+    .col-md-4 {
+      text-align: right;
+    }
+
+    .btn {
+      position: relative;
+      top: 10px;
+      font-size: .9em;
+      padding: 6px 15px;
+    }
+  }
+}
+
+/* | Game template | */
+.game-template {
+  background-image: url(../images/bg-cream-pixels.png);
+
+  .container {
+    max-width: 900px;
+    height: 560px;
+
+    border-radius: 4px;
+    background-color: #fefefe;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+  }
+}
+
+/*
+|----------------------------------------------------
+| Nav bar
+|----------------------------------------------------
+*/
+
+.navbar {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0 10px;
+
+  color: #fff;
+  background-color: $brand-color;
+
+  ul {
+    @include reset-list;
+
+    li {
+      @include reset-list;
+
+      display: inline-block;
+      height: 100%;
+
+      a {
+        &:hover,
+        &:focus {
+          background-color: lighten($brand-color, 5%);
+        }
+      }
+    }
+  }
+
+  div {
+    padding: 0;
+  }
+
+  .col-brand {
+    text-align: center;
+      border-right: 1px solid #ff838f;
+
+    .logo-brand {
+      font-size: 1em;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+  }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    padding: 15px 30px;
+    height: 100%;
+  }
+
+  .logout {
+    position: absolute;
+    right: 10px;
+    top: 3px;
+    font-size: .8em;
+
+    &:hover,
+    &:focus {
+      color: #eee;
+      text-decoration: underline;
+    }
+  }
+}
+
 /*
 |----------------------------------------------------
 | Buttons
@@ -44,20 +192,45 @@ body {
   cursor: pointer;
   border: 1px solid transparent;
   background-color: #fff;
-
+  color: $text-color;
   padding: 8px 20px;
   border-radius: 3px;
 
   text-decoration: none;
 }
 
+.btn-small {
+  padding: 6px 15px;
+  font-size: .9em;
+}
+
 .btn-default {
   color: $grey-color;
-  border-color: #ccc;
+  border-color: lighten($grey-color, 10%);
 }
 
 .btn-main {
+  color: #fff;
+  border-color: darken($brand-color, 5%);
+  background-color: $brand-color;
+}
 
+.btn-blue {
+  color: #fff;
+  border-color: darken($blue-color, 25%);
+  background-color: $blue-color;
+}
+
+.btn-red {
+  color: #fff;
+  border-color: darken($red-color, 25%);
+  background-color: $red-color;
+}
+
+.btn-green {
+  color: darken($green-color, 35%);;
+  border-color: darken($green-color, 30%);
+  background-color: $green-color;
 }
 
 .btn-link {
@@ -104,6 +277,63 @@ body {
 .message-important {
   color: #fff;
   background-color: #de4f4f;
+}
+
+.alert {
+  p,
+  ul {
+    margin: 0 0 0 1em;
+    padding: 0;
+  }
+}
+
+/*
+|----------------------------------------------------
+| Forms
+|----------------------------------------------------
+*/
+
+.form-default {
+  label {
+    display: block;
+  }
+
+  .form-group + .form-group { margin-top: 1em; }
+}
+
+/* | Inputs (text, password, email, select, textarea, etc) | */
+.input-control {
+  color: $text-color;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 8px;
+}
+
+.input-control:disabled {
+  background-color: #efefef;
+  cursor: not-allowed;
+}
+
+.input-size-mini { width: 10%; }
+.input-size-small { width: 20%; }
+.input-size-medium { width: 40%; }
+.input-size-large { width: 60%; }
+.input-size-largex { width: 80%; }
+.input-size-full { width: 100%; }
+
+.input-search {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  font-weight: 300;
+  font-size: 1.5em;
+}
+
+.custom-checkbox {
+  input[type="checkbox"] {
+    position: relative;
+    top: 2px;
+  }
 }
 
 /*
@@ -490,7 +720,6 @@ body {
 
   h2 {
     font-size: 50px;
-    font-weight: 300;
     margin-top: 140px;
     margin-bottom: 30px;
   }
