@@ -215,6 +215,13 @@ $(function(){
   }
 
   function newGame() {
+    $('.container').removeClass('vison-version-game');
+    $('.container').removeClass('audio-version-game');
+
+    if(typeGame == 'audio-version') {
+      $('.container').addClass(typeGame + '-game');
+    }
+
     $('.question-container').remove();
     $('.list-answers li').remove();
 
