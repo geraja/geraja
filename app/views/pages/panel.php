@@ -1,12 +1,13 @@
 <section class="page-section">
-  <header class="row section-header">
+  <div class="row section-header">
     <div class="col-md-8">
       <h1>Painel de controle</h1>
     </div>
     <div class="col-md-4">
       <a class="btn btn-green" href="<?= base_url('gerenciador/novo-jogo'); ?>">Criar novo jogo</a>
     </div>
-  </header>
+  </div>
+
   <?php $this->load->view('partials/alert-message'); ?>
 
   <?php if(isset($games)): ?>
@@ -20,6 +21,8 @@
           <th>Público</th>
           <th>Criado em</th>
           <th></th>
+          <th></th>
+          <th></th>
         </thead>
         <tbody>
           <?php foreach($games as $g): ?>
@@ -31,8 +34,13 @@
               </td>
               <td><?= display_date($g->inserted_at); ?></td>
               <td>
-                <a href="<?= base_url('gerenciador/jogo/' . $g->id_game); ?>" class="btn btn-small btn-blue">Configurar</a>
-                <a href="<?= base_url('gerenciador/editar-jogo/' . $g->id_game); ?>" class="btn btn-small btn-default">Editar</a>
+                <a class="btn btn-small btn-blue" href="<?= base_url('gerenciador/jogo/' . $g->id_game); ?>">Configurar</a>
+              </td>
+              <td>
+                <a class="btn btn-small btn-default" href="<?= base_url('gerenciador/editar-jogo/' . $g->id_game); ?>">Editar</a>
+              </td>
+              <td>
+                <a class="bbtn btn-small btn-link" href="<?= base_url('jogo/' . $g->code); ?>">Visualizar</a>
               </td>
             </tr>
           <?php endforeach; ?>

@@ -31,6 +31,5 @@
     </div>
 
     <?= form_close(); ?>
-
   </div>
 </section>

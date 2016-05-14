@@ -9,7 +9,7 @@ html, body {
 
 body {
   color: $text-color;
-  margin-top: 40px;
+  margin: 40px 0;
   font-family: $font-family;
 }
 
@@ -84,6 +84,12 @@ a {
   }
 
   .section-header {
+    h1 {
+      span {
+        color: lighten($text-color, 20%);
+      }
+    }
+
     .col-md-4 {
       text-align: right;
     }
@@ -93,6 +99,21 @@ a {
       top: 10px;
       font-size: .9em;
       padding: 6px 15px;
+    }
+  }
+
+  .game-content {
+    padding-top: 2em;
+
+    & + .game-content {
+      margin-top: 2em;
+      border-top: 1px solid $brand-color;
+    }
+
+    .game-content-list {
+      display: block;
+      width: 100%;
+      margin-top: 3em;
     }
   }
 }

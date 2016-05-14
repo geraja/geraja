@@ -11,9 +11,33 @@ class App extends CI_Controller {
   public function jogo($unique_name = null)
   {
     if(!$unique_name) redirect(base_url(''));
-
     $data['page_title'] = 'Demo';
-    $this->template->load('main-template', 'jogo', $data);
+    $assets_url = false;
+
+    $where = array('code' => $unique_name);
+    $game = $this->main_model->get_item('games', $where);
+
+    if($game) {
+      $data['game'] = $game;
+      $data['page_title'] = $game['name'];
+      $assets_url ='../data/' . $game['uid'] . '/' . $game['id_game'] . '/';
+
+      /*
+      |-----------
+      | Assets
+      |-----------
+      */
+      /* images */
+      $images = $this->main_model->get_items('assets', array('id_game' => $game['id_game'], 'type' => 1));
+      if($images) $data['images'] = $images;
+
+      /* Audios */
+      $audios = $this->main_model->get_items('assets', array('id_game' => $game['id_game'], 'type' => 2));
+      if($audios) $data['audios'] = $audios;
+    }
+
+    $data['assets_url'] = $assets_url;
+    $this->template->load('game-template', 'jogo', $data);
   }
 
   public function sobre()

@@ -1,3 +1,5 @@
+<?php $this->load->view('partials/alert-message'); ?>
+
 <div class="game clearfix">
   <div class="stage">
     <section class="game-page page-loading active">

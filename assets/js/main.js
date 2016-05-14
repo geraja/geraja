@@ -232,7 +232,7 @@ $(function(){
       $treadmill.hide();
       numberItems = getRandomInt(1, 9);
 
-      items = ['latido', 'buzina-bicicleta', 'latido', 'buzina-bicicleta-2', 'latido', 'buzina-bicicleta-2', 'latido'];
+      items = sounds;
       item = getRandomInt(0, items.length - 1);
 
       var played = 0;
@@ -275,7 +275,7 @@ $(function(){
     } else {
       $treadmill.show();
 
-      items = ['futbol-o.svg', 'heart-o.svg', 'cloud.svg'];
+      items = images;
       item = getRandomInt(0, items.length - 1);
 
       $treadmill.append('<div class="question-container"><div class="question-items"></div><div class="question-base"></div></div>');
@@ -283,7 +283,7 @@ $(function(){
       var $question = $('.question-container .question-items');
 
       for(var i = 1; i <= numberItems; i++) {
-        $question.append('<div class="question-item"><img src="../public/images/'+items[item]+'" alt="Item em movimento na esteira do jogo" width="32" height="32"></div>')
+        $question.append('<div class="question-item"><img src="'+urlAssets+items[item]+'" alt="Item em movimento na esteira do jogo" width="32" height="32"></div>')
       }
 
       $('.question-container').addClass('question-move');
@@ -421,10 +421,15 @@ $(function(){
     'selecione-dificuldade-jogo': '../public/sounds/selecione-dificuldade-jogo.mp3',
     'selecione-modo-jogo': '../public/sounds/selecione-modo-jogo.mp3',
     'passou-nivel': '../public/sounds/voce-passou-nivel.mp3',
-    'latido': '../public/sounds/latido.mp3',
-    'buzina-bicicleta': '../public/sounds/buzina-bicicleta.mp3',
-    'buzina-bicicleta-2': '../public/sounds/buzina-bicicleta-2.mp3'
   };
+
+  var totalsoundsAssets = Object.keys(soundsAssets).length;
+
+  if(totalsoundsAssets) {
+    $.extend(audios, soundsAssets);
+  }
+
+  console.log(audios);
 
   totalAudios = Object.keys(audios).length;
 
