@@ -5,25 +5,25 @@
       <div class="col-md-3">
         <div class="game-item">
           <div class="game-thumb"></div>
-          <h3 class="game-title"><a href="<?= base_url('jogo/exemplo'); ?>">Jogo Exemplo</a></h3>
+          <h3 class="game-title"><a href="#">Jogo Exemplo</a></h3>
         </div>
       </div>
       <div class="col-md-3">
         <div class="game-item">
           <div class="game-thumb"></div>
-          <h3 class="game-title"><a href="<?= base_url('jogo/exemplo'); ?>">Jogo Exemplo</a></h3>
+          <h3 class="game-title"><a href="#">Jogo Exemplo</a></h3>
         </div>
       </div>
       <div class="col-md-3">
         <div class="game-item">
           <div class="game-thumb"></div>
-          <h3 class="game-title"><a href="<?= base_url('jogo/exemplo'); ?>">Jogo Exemplo</a></h3>
+          <h3 class="game-title"><a href="#">Jogo Exemplo</a></h3>
         </div>
       </div>
       <div class="col-md-3">
         <div class="game-item">
           <div class="game-thumb"></div>
-          <h3 class="game-title"><a href="<?= base_url('jogo/exemplo'); ?>">Jogo Exemplo</a></h3>
+          <h3 class="game-title"><a href="#">Jogo Exemplo</a></h3>
         </div>
       </div>
     </div>
