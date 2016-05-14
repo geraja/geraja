@@ -28,7 +28,7 @@
         <input type="name" name="name" id="name" class="input-control input-size-medium" value="<?= $game['name']; ?>">
       </div>
       <div class="form-group">
-        <label for="active">Tornar o jogo público para outros usuários acessar?</label>
+        <label for="active">Tornar o jogo público para outros usuários acessarem?</label>
         <?php
 
         $options = array(0 => 'Não, ainda vou finalizar o jogo', 1 => 'Sim, o jogo já está pronto');
