@@ -120,11 +120,13 @@ class Gerenciador extends CI_Controller {
       $data['game'] = $game;
 
       /* images */
-      $images = $this->main_model->get_items('assets', array('id_game' => $game['id_game'], 'type' => 1));
+      $assets_where = array('id_game' => $game['id_game'], 'type' => 1);
+      $images = $this->main_model->get_items('assets', $assets_where, null, 0, 'id_asset', 'desc');
       if($images) $data['images'] = $images;
 
       /* audios */
-      $audios = $this->main_model->get_items('assets', array('id_game' => $game['id_game'], 'type' => 2));
+      $assets_where = array('id_game' => $game['id_game'], 'type' => 2);
+      $audios = $this->main_model->get_items('assets', $assets_where, null, 0, 'id_asset', 'desc');
       if($audios) $data['audios'] = $audios;
     }
 

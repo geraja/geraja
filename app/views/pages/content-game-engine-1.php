@@ -99,6 +99,7 @@
               <table class="table">
                 <thead>
                   <tr>
+                    <th>Nome do arquivo</th>
                     <th>Áudio</th>
                     <th>Adicionado em</th>
                     <th></th>
@@ -107,6 +108,7 @@
                 <tbody>
                   <?php foreach ($audios as $a): ?>
                     <tr>
+                      <td><?= $a->name; ?></td>
                       <td>
                         <audio src="<?= $path_assets . $a->name; ?>" controls></audio>
                       </td>
