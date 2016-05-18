@@ -33,7 +33,7 @@
         <div class="game-level-options">
           <ul class="list-custom level-items text-center">
             <li class="col-md-2">
-              <button type="button" class="btn btn-level selected" data-game-level="1">1</button>
+              <button type="button" class="btn btn-level" data-game-level="1">1</button>
             </li>
             <li class="col-md-2">
               <button type="button" class="btn btn-level" data-game-level="2">2</button>
@@ -47,9 +47,10 @@
             <li class="col-md-2">
               <button type="button" class="btn btn-level" data-game-level="5">5</button>
             </li>
+            <li class="col-md-2">
+              <button type="button" class="btn btn-level" data-game-level="6">6</button>
+            </li>
           </ul>
-
-          <button type="button" class="btn btn-action back-page">Voltar</button>
         </div>
 
       </section>

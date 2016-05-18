@@ -55,6 +55,8 @@ $(function(){
   $('.btn-level').click(function(){
     $('.btn-level').removeClass('selected');
     $(this).addClass('selected');
+
+    confirmLevelSelected();
   });
 
   $("body").keydown(function(e) {
@@ -80,6 +82,8 @@ $(function(){
   $('.list-answers').on('click', '.btn', function(){
     $('.list-answers li .btn').removeClass('selected');
     $(this).addClass('selected');
+
+    checkAnswer();
   });
 
   $('#game-page-4 .btn-action').click(function(){
@@ -134,50 +138,36 @@ $(function(){
   }
 
   function selectLevelGame(keyCode) {
+    var $levelSelected = $('.level-items .selected').parent();
 
     if(keyCode == 32) {
       if($('.level-items .selected').length) {
-
-        levelGame = parseInt($('.level-items .selected').data('game-level'));
-        changePage(3);
-
-        $('.level-items .btn').removeClass('selected');
-        $('.level-items li').first().children('.btn').addClass('selected');
-
-        newGame();
+        confirmLevelSelected();
       }
     } else if(keyCode == 37) {
-      if($('.level-items .selected').length == 0) {
-        $('.game-level-options .btn-action').blur();
+      $('.level-items .btn').removeClass('selected');
+
+      if ($levelSelected.prev().length == 0) {
         $('.level-items li').last().children('.btn').addClass('selected');
       } else {
-        var $levelSelected = $('.level-items .selected').parent();
-
-        $('.level-items .btn').removeClass('selected');
-
-        if ($levelSelected.prev().length == 0) {
-          $('.game-level-options .btn-action').focus();
-        } else {
-          $levelSelected.prev().children('.btn').addClass('selected');
-        }
+        $levelSelected.prev().children('.btn').addClass('selected');
       }
     } else if(keyCode == 39) {
-      if($('.level-items .selected').length == 0) {
-        $('.game-level-options .btn-action').blur();
+      $('.level-items .btn').removeClass('selected');
+
+      if ($levelSelected.next().length == 0) {
         $('.level-items li').first().children('.btn').addClass('selected');
       } else {
-        var $levelSelected = $('.level-items .selected').parent();
-        $('.level-items .btn').removeClass('selected');
-
-        if ($levelSelected.next().length == 0) {
-          $('.game-level-options .btn-action').focus();
-        } else {
-          $levelSelected.next().children('.btn').addClass('selected');
-        }
+        $levelSelected.next().children('.btn').addClass('selected');
       }
     }
 
     if(keyCode == 37 || keyCode == 39) {
+      if(!$('.level-items .selected').length) {
+        $('.level-items li').first().children('.btn').addClass('selected');
+        $levelSelected = $('.level-items .selected').parent();
+      }
+
       levelGame = $('.level-items .selected').data('game-level');
 
       if(typeGame == 'audio-version') {
@@ -186,6 +176,16 @@ $(function(){
         }
       }
     }
+  }
+
+  function confirmLevelSelected() {
+    levelGame = parseInt($('.level-items .selected').data('game-level'));
+    changePage(3);
+
+    $('.level-items .btn').removeClass('selected');
+    $('.level-items li .btn').removeClass('selected');
+
+    newGame();
   }
 
   function selectAnswer(keyCode) {
@@ -212,6 +212,11 @@ $(function(){
     }
 
     if(keyCode == 37 || keyCode == 39) {
+      if(!$('.list-answers .selected').length) {
+        $('.list-answers li').first().children('.btn').addClass('selected');
+        $answerSelected = $('.list-answers .selected').parent();
+      }
+
       if(typeGame == 'audio-version') {
         var answer = parseInt($('.list-answers .selected').data('answer'));
         playAudio('numero-' + answer);
@@ -297,7 +302,7 @@ $(function(){
       var $question = $('.question-container .question-items');
 
       for(var i = 1; i <= numberItems; i++) {
-        $question.append('<div class="question-item"><img src="'+urlAssets+items[item]+'" alt="Item em movimento na esteira do jogo" width="32" height="32"></div>')
+        $question.append('<div class="question-item"><img src="'+urlAssets+items[item]+'" alt="Item em movimento na esteira do jogo" width="32"></div>')
       }
 
       $('.question-container').addClass('question-move');
@@ -325,9 +330,8 @@ $(function(){
     // Create the options of answers
     for(var a = 1; a <= 4; a++) {
       var valueAnswer = optionsAnswers[a];
-      var selectedAnswer = a == 1 ? 'selected' : '';
 
-      $('.list-answers').append('<li><button type="button" class="btn btn-answer ' + selectedAnswer + ' animated fadeInUp" data-answer="' + valueAnswer + '">' + valueAnswer + '</button></li>');
+      $('.list-answers').append('<li><button type="button" class="btn btn-answer animated fadeInUp" data-answer="' + valueAnswer + '">' + valueAnswer + '</button></li>');
     }
 
     // Check if the options answers has a correct answer
@@ -362,7 +366,7 @@ $(function(){
         playAudio('right-answer');
         score++;
 
-        var strScore = score < 10 ? '0' + score : score;
+        var strScore = score < 4 ? '0' + score : score;
         $('.score').text(strScore);
 
         // Score animation
