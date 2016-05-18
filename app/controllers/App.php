@@ -18,22 +18,39 @@ class App extends CI_Controller {
     $game = $this->main_model->get_item('games', $where);
 
     if($game) {
+      // Verificar se o jogo é público.
+      $uid = $this->session->userdata('user');
+
+      if(!$game['active'] && $game['uid'] !== $uid) {
+        $data['error'] = true;
+        $data['error_message'] = 'Não foi possível acessar o jogo. Provavelmente o jogo ainda não foi publicado.';
+      }
+
       $data['game'] = $game;
       $data['page_title'] = $game['name'];
       $assets_url ='../data/' . $game['uid'] . '/' . $game['id_game'] . '/';
 
-      /*
-      |-----------
-      | Assets
-      |-----------
-      */
       /* images */
       $images = $this->main_model->get_items('assets', array('id_game' => $game['id_game'], 'type' => 1));
-      if($images) $data['images'] = $images;
+      if($images) {
+        $data['images'] = $images;
+      } else {
+        if($game['type'] == 1) {
+          $data['error'] = true;
+          $data['error_message'] = 'Não foi possível carregar os dados do jogo, por favor tente novamente.';
+        }
+      }
 
-      /* Audios */
+      /* audios */
       $audios = $this->main_model->get_items('assets', array('id_game' => $game['id_game'], 'type' => 2));
-      if($audios) $data['audios'] = $audios;
+      if($audios) {
+        $data['audios'] = $audios;
+      } else {
+        if($game['type'] == 2) {
+          $data['error'] = true;
+          $data['error_message'] = 'Não foi possível carregar os dados do jogo, por favor tente novamente.';
+        }
+      }
     }
 
     $data['assets_url'] = $assets_url;

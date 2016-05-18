@@ -37,6 +37,30 @@ class Gerenciador extends CI_Controller {
 
     if($user) {
       $data['user'] = $user;
+
+      // Atualizar conta
+      $update_account = $this->input->post('btn-update-account');
+
+      if($update_account) {
+        $firstname = $this->input->post('firstname');
+        $lastname = $this->input->post('lastname');
+
+        $this->form_validation->set_rules('firstname', 'Nome', 'trim|required');
+        $this->form_validation->set_rules('lastname', 'Sobrenome', 'trim|required');
+
+        if ($this->form_validation->run() == TRUE) {
+          $object_update = array('firstname' => $firstname, 'lastname' => $lastname);
+          $update_user = $this->main_model->update_item('users', $where, $object_update);
+
+          if($update_user) {
+            $flashdata['alert_type'] = 'alert-success';
+            $flashdata['alert_message'] = 'Os dados da sua conta foram atualizados com sucesso.';
+            $this->session->set_flashdata($flashdata);
+            redirect(base_url('gerenciador'));
+          }
+        }
+      }
+
     } else {
       $flashdata['alert_type'] = 'alert-warning';
       $flashdata['alert_message'] = 'Não foi possível carregar os dados da sua conta, por favor tente novamente mais tarde.';
@@ -55,14 +79,16 @@ class Gerenciador extends CI_Controller {
 
     if($create_game) {
       $name = $this->input->post('name');
+      $type = $this->input->post('type');
 
-      if($name) {
+      if($name && $type) {
         $game_code = random_code(10, $this->main_model->get_last_id_game()); // random_code(length, merge)
 
         $object_insert = array(
           'uid' => $this->uid,
           'name' => $name,
           'code' => $game_code,
+          'type' => $type,
           );
 
         $save_game = $this->main_model->insert_item('games', $object_insert);
@@ -92,21 +118,17 @@ class Gerenciador extends CI_Controller {
 
     if($game) {
       $data['game'] = $game;
-      /*
-      |-----------
-      | Assets
-      |-----------
-      */
+
       /* images */
       $images = $this->main_model->get_items('assets', array('id_game' => $game['id_game'], 'type' => 1));
       if($images) $data['images'] = $images;
 
-      /* Audios */
+      /* audios */
       $audios = $this->main_model->get_items('assets', array('id_game' => $game['id_game'], 'type' => 2));
       if($audios) $data['audios'] = $audios;
     }
 
-    $this->template->load('pages-template', 'pages/content-game', $data);
+    $this->template->load('pages-template', 'pages/content-game-engine-1', $data);
   }
 
   public function adicionar_asset($tipo = null)

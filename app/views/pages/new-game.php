@@ -26,6 +26,17 @@
       <label for="name">Nome do jogo</label>
       <input type="name" name="name" id="name" class="input-control input-size-medium" value="<?= set_value('name'); ?>" required>
     </div>
+
+    <div class="form-group">
+      <label for="type">Tipo de jogo (essa opção não poderá ser alterada depois)</label>
+        <?php
+
+        $options = array('' => 'Seleciona uma opção', 1 => 'Jogo para jogar vendo (imagens)', 2 => 'Jogo para jogar ouvindo (sons)');
+        echo form_dropdown('type', $options, set_value('type'), array('class' => 'input-control input-size-medium', 'required' => 'required'));
+
+        ?>
+    </div>
+
     <div class="form-group">
       <input type="submit" class="btn btn-action" title="Criar jogo" id="btn-create-game" name="btn-create-game" value="Criar jogo">
     </div>

@@ -1,6 +1,6 @@
 $(function(){
 
-  var page = 1;
+  var page = 2;
   var typeGame = $('.game-type-item.selected').data('game-type');
   var levelGame = parseInt($('.level-items .selected').data('game-level'));
   var score = 0;
@@ -19,6 +19,10 @@ $(function(){
 
       if(page == 1) {
         playAudio('selecione-modo-jogo');
+      } else if(page == 2) {
+        if(typeGame == 'audio-version') {
+          playAudio('selecione-dificuldade-jogo');
+        }
       }
     }
   }
@@ -67,7 +71,7 @@ $(function(){
       } else if(page == 3) {
         selectAnswer(e.keyCode);
       } else if(page == 4) {
-        page = 1;
+        page = 2;
         changePage(page);
       }
     }
@@ -81,7 +85,7 @@ $(function(){
   $('#game-page-4 .btn-action').click(function(){
     $(this).blur(); // remove focus of the element/button
 
-    page = 1;
+    page = 2;
     changePage(page);
   });
 
@@ -133,6 +137,7 @@ $(function(){
 
     if(keyCode == 32) {
       if($('.level-items .selected').length) {
+
         levelGame = parseInt($('.level-items .selected').data('game-level'));
         changePage(3);
 
@@ -218,6 +223,8 @@ $(function(){
     $('.container').removeClass('vison-version-game');
     $('.container').removeClass('audio-version-game');
 
+
+
     if(typeGame == 'audio-version') {
       $('.container').addClass(typeGame + '-game');
     }
@@ -245,7 +252,6 @@ $(function(){
       var played = 0;
 
       function playAudioQuestion() {
-
         audioPlayer.src = audios[items[item]];
         audioPlayer.play();
         audioPlayer.addEventListener('ended', audioQuestionHandler, false);
@@ -261,6 +267,7 @@ $(function(){
           audioPlayer.removeEventListener('ended', audioQuestionHandler, false);
 
           $('.clock-tick')[0].play();
+
           createOptionsAnswers(numberItems);
 
           // Time that the user has for choose answer
@@ -406,13 +413,17 @@ $(function(){
   | Preloader to load important assets
   |--------------------------------------------------------------------
   */
+
+  //'jogar-ouvindo': '../public/sounds/jogar-ouvindo.mp3',
+  //'jogar-vendo': '../public/sounds/jogar-vendo.mp3',
+  //'selecione-modo-jogo': '../public/sounds/selecione-modo-jogo.mp3',
+  //'passou-nivel': '../public/sounds/voce-passou-nivel.mp3',
+
   audios = {
     'right-answer': '../public/sounds/right-answer.mp3',
     'wrong-answer': '../public/sounds/wrong-answer.mp3',
     'clock-tick': '../public/sounds/clock-tick-v1.mp3',
     'jogar-novamente': '../public/sounds/jogar-novamente.mp3',
-    'jogar-ouvindo': '../public/sounds/jogar-ouvindo.mp3',
-    'jogar-vendo': '../public/sounds/jogar-vendo.mp3',
     'muito-bem': '../public/sounds/muito-bem.mp3',
     'numero-0': '../public/sounds/numero-0.mp3',
     'numero-1': '../public/sounds/numero-1.mp3',
@@ -425,34 +436,41 @@ $(function(){
     'numero-8': '../public/sounds/numero-8.mp3',
     'numero-9': '../public/sounds/numero-9.mp3',
     'numero-10': '../public/sounds/numero-10.mp3',
-    'selecione-dificuldade-jogo': '../public/sounds/selecione-dificuldade-jogo.mp3',
-    'selecione-modo-jogo': '../public/sounds/selecione-modo-jogo.mp3',
-    'passou-nivel': '../public/sounds/voce-passou-nivel.mp3',
+    'selecione-dificuldade-jogo': '../public/sounds/selecione-dificuldade-jogo.mp3'
   };
 
-  var totalsoundsAssets = Object.keys(soundsAssets).length;
+  if(typeGame == 'audio-version') {
+    var totalsoundsAssets = Object.keys(soundsAssets).length;
 
-  if(totalsoundsAssets) {
-    $.extend(audios, soundsAssets);
+    if(totalsoundsAssets) {
+      $.extend(audios, soundsAssets);
+    }
   }
-
-  console.log(audios);
 
   totalAudios = Object.keys(audios).length;
 
+  var preloadControl = [];
+
+  for (var i in audios) {
+    if(audios[i]) {
+      preloadControl.push(audios[i])
+    }
+  }
+
   function preloadAudio(url) {
     var audio = new Audio();
-
-    audio.addEventListener('canplaythrough', loadedAudio, false);
+    audio.addEventListener('canplaythrough', loadedAudio);
     audio.src = url;
   }
 
   function loadedAudio() {
     audiosLoaded++;
 
-    if (audiosLoaded == totalAudios){
+    if (audiosLoaded >= totalAudios) {
       init();
       $('.preloader-bar').css('width',  "0%");
+    } else {
+      preloadAudio(preloadControl[audiosLoaded]);
     }
 
     var progress = (audiosLoaded * 100) / totalAudios;
@@ -478,11 +496,11 @@ $(function(){
     $('.game-page').removeClass('active');
     $('#game-page-' + page).addClass('active animated fadeIn');
 
-    playAudio('selecione-modo-jogo');
+    if(typeGame == 'audio-version') {
+      playAudio('selecione-dificuldade-jogo');
+    }
   }
 
   // preloading the audio files
-  for (var i in audios) {
-    preloadAudio(audios[i]);
-  }
+  preloadAudio(preloadControl[audiosLoaded]);
 });

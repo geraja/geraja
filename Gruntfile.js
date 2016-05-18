@@ -104,7 +104,7 @@ module.exports = function(grunt) {
         },
         options: {
           watchTask: true,
-          proxy: 'http://localhost/gerador-de-jogos/'
+          proxy: 'http://localhost/geraja/'
         }
       }
     },

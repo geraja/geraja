@@ -1,5 +1,20 @@
 <section class="page-section">
   <h2 class="text-center">Confira alguns jogos criados por usuários</h2>
+  <div class="row text-center">
+    <div class="col-md-4">
+      <p><b>1.</b> Crie uma conta apenas com email e senha.</p>
+    </div>
+    <div class="col-md-4">
+      <p><b>2.</b> Gere jogos para jogar vendo ou jogar ouvindo</p>
+    </div>
+    <div class="col-md-4">
+      <p><b>3.</b> Compartilhe os jogos com outros usuários</p>
+    </div>
+  </div>
+</section>
+
+<section class="page-section">
+  <h2 class="text-center">Confira alguns jogos criados por usuários</h2>
   <div class="container-games">
     <div class="row">
       <div class="col-md-3">
@@ -28,12 +43,4 @@
       </div>
     </div>
   </div>
-</section>
-<section class="page-section">
-  <?= form_open(base_url('cadastro'), array('role' => 'search')); ?>
-  <div class="form-group">
-    <h2 class="text-center">Pesquise outros jogos</h2>
-    <input type="text" class="input-control input-search" placeholder="Exemplo de pesquisa: Bolhas, Amarelinha, Sons cósmicos">
-  </div>
-  <?= form_close(); ?>
 </section>

@@ -16,9 +16,9 @@
     <div class="table-reponsive">
       <table class="table">
         <thead>
-          <th>#id</th>
           <th>Nome</th>
-          <th>Público</th>
+          <th>Tipo</th>
+          <th>Publicado</th>
           <th>Criado em</th>
           <th></th>
           <th></th>
@@ -27,8 +27,10 @@
         <tbody>
           <?php foreach($games as $g): ?>
             <tr>
-              <td><?= $g->id_game; ?></td>
               <td><?= $g->name; ?></td>
+              <td>
+                <?= $g->type == 1 ? 'Jogar Vendo' : 'Jogar Ouvindo'; ?>
+              </td>
               <td>
                 <?= $g->active == 1 ? 'Sim' : 'Não'; ?>
               </td>
