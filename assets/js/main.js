@@ -366,7 +366,7 @@ $(function(){
         playAudio('right-answer');
         score++;
 
-        var strScore = score < 4 ? '0' + score : score;
+        var strScore = score < 10 ? '0' + score : score;
         $('.score').text(strScore);
 
         // Score animation
