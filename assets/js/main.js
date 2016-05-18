@@ -302,7 +302,7 @@ $(function(){
       var $question = $('.question-container .question-items');
 
       for(var i = 1; i <= numberItems; i++) {
-        $question.append('<div class="question-item"><img src="'+urlAssets+items[item]+'" alt="Item em movimento na esteira do jogo" width="16"></div>')
+        $question.append('<div class="question-item"><img src="'+urlAssets+items[item]+'" alt="Item em movimento na esteira do jogo"></div>')
       }
 
       $('.question-container').addClass('question-move');

@@ -614,7 +614,7 @@ a {
       }
 
       img {
-        width: 16px;
+        max-width: 32px;
         height: auto;
 
         & + img {
