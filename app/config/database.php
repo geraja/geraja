@@ -70,6 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
+
 $active_group = 'development';
 $query_builder = TRUE;
 
@@ -97,10 +98,10 @@ $db['development'] = array(
 
 $db['production'] = array(
   'dsn' => '',
-  'hostname' => getenv('DB_HOST'),
-  'username' => getenv('DB_USER'),
-  'password' => getenv('DB_PASS'),
-  'database' => getenv('DB_NAME'),
+  'hostname' => 'mysql.geraja.com.br',
+  'username' => 'geraja',
+  'password' => 'BeTUPS#no*CX3#u*',
+  'database' => 'geraja',
   'dbdriver' => 'mysqli',
   'dbprefix' => '',
   'pconnect' => FALSE,
