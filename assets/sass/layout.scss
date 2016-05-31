@@ -71,10 +71,26 @@ hr {
     .game-item {
       text-align: center;
 
+      &.seeing-version {
+        .game-thumb {
+          background-color: #efefef;
+        }
+      }
+
+      &.listening-version {
+        .game-thumb {
+          background-color: #333;
+        }
+      }
+
       .game-thumb {
         height: 140px;
         border: 1px solid #eee;
-        background-color: #efefef;
+        line-height: 135px;
+
+        img {
+          vertical-align: middle;
+        }
       }
 
       .game-title {
