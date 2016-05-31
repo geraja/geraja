@@ -42,7 +42,7 @@
                 <a class="btn btn-small btn-default" href="<?= base_url('gerenciador/editar-jogo/' . $g->id_game); ?>">Editar</a>
               </td>
               <td>
-                <a class="bbtn btn-small btn-link" href="<?= base_url('jogo/' . $g->code); ?>">Visualizar</a>
+                <a target="_blank" class="btn btn-small btn-link" href="<?= base_url('jogo/' . $g->code); ?>">Visualizar</a>
               </td>
             </tr>
           <?php endforeach; ?>

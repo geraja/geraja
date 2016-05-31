@@ -27,28 +27,44 @@ class App extends CI_Controller {
       }
 
       $data['game'] = $game;
-      $data['page_title'] = $game['name'];
+      $data['page_title'] = 'Jogo: '. $game['name'];
       $assets_url ='../data/' . $game['uid'] . '/' . $game['id_game'] . '/';
 
-      /* images */
-      $images = $this->main_model->get_items('assets', array('id_game' => $game['id_game'], 'type' => 1));
-      if($images) {
-        $data['images'] = $images;
-      } else {
-        if($game['type'] == 1) {
-          $data['error'] = true;
-          $data['error_message'] = 'Não foi possível carregar os dados do jogo, por favor tente novamente.';
+      if($game['engine'] == 1) {
+        $images = $this->main_model->get_items('assets', array('id_game' => $game['id_game'], 'type' => 1, 'active' => 1));
+        if($images) {
+          $data['images'] = $images;
+        } else {
+          if($game['type'] == 1) {
+            $data['error'] = true;
+            $data['error_message'] = 'Não foi possível carregar os dados do jogo, por favor tente novamente.';
+          }
         }
-      }
 
-      /* audios */
-      $audios = $this->main_model->get_items('assets', array('id_game' => $game['id_game'], 'type' => 2));
-      if($audios) {
-        $data['audios'] = $audios;
-      } else {
-        if($game['type'] == 2) {
-          $data['error'] = true;
-          $data['error_message'] = 'Não foi possível carregar os dados do jogo, por favor tente novamente.';
+        $audios = $this->main_model->get_items('assets', array('id_game' => $game['id_game'], 'type' => 2, 'active' => 1));
+
+        if($audios) {
+          $data['audios'] = $audios;
+        } else {
+          if($game['type'] == 2) {
+            $data['error'] = true;
+            $data['error_message'] = 'Não foi possível carregar os dados do jogo, por favor tente novamente.';
+          }
+        }
+      } else if($game['engine'] == 2) {
+        $assets_where = array('game_questions.id_game' => $game['id_game'], 'game_questions.active' => 1);
+        $assets = $this->main_model->get_game_questions($assets_where, null, 0, 'game_questions.id_asset', 'desc');
+
+        if($assets) {
+          $data['questions'] = $assets;
+
+          if($game['type'] == 1) {
+            // Jogar vendo(imagens)
+            $data['images'] = $assets;
+          } else {
+            // Jogar ouvindo(audios)
+            $data['audios'] = $assets;
+          }
         }
       }
     }

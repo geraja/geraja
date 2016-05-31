@@ -1,5 +1,4 @@
 $(function(){
-
   var page = 2;
   var typeGame = $('.game-type-item.selected').data('game-type');
   var levelGame = parseInt($('.level-items .selected').data('game-level'));
@@ -10,6 +9,188 @@ $(function(){
   var audiosLoaded = 0;
   var totalAudios = 0;
   var audioPlayer = document.getElementById('audio-player');
+  var newGame;
+
+  if(gameEngine) {
+    switch(gameEngine) {
+      case 1:
+        gameRandomAnswers();
+      break;
+
+      case 2:
+        gameDefinedAnswers();
+      break;
+    }
+  }
+
+  function gameRandomAnswers() {
+    newGame = function() {
+      $('.container').removeClass('vison-version-game');
+      $('.container').removeClass('audio-version-game');
+
+      if(typeGame == 'audio-version') {
+        $('.container').addClass(typeGame + '-game');
+      }
+
+      $('.question-container').remove();
+      $('.list-answers li').remove();
+
+      if(gameTime) {
+        window.clearTimeout(gameTime);
+      }
+
+      var $treadmill = $('.treadmill');
+      var items;
+      var item;
+
+      numberItems = getRandomInt(0, 8);
+
+      if(typeGame == 'audio-version') {
+        $treadmill.hide();
+        numberItems = getRandomInt(1, 9);
+
+        items = sounds;
+        item = getRandomInt(0, items.length - 1);
+
+        var played = 0;
+
+        function playAudioQuestion() {
+          audioPlayer.src = audios[items[item]];
+          audioPlayer.play();
+          audioPlayer.addEventListener('ended', audioQuestionHandler, false);
+        }
+
+        playAudioQuestion();
+
+        function audioQuestionHandler() {
+          played++;
+
+          if(played >= numberItems) {
+
+            audioPlayer.removeEventListener('ended', audioQuestionHandler, false);
+
+            $('.clock-tick')[0].play();
+
+            createOptionsAnswers(numberItems);
+
+            // Time that the user has for choose answer
+            gameTime = window.setTimeout(function() {
+              playAudio('wrong-answer');
+
+              $('.clock-tick')[0].pause();
+              $('.clock-tick').prop('currentTime', 0);
+
+              handleNewGameTime();
+            }, 13100);
+
+          } else {
+            audioPlayer.removeEventListener('ended', audioQuestionHandler, false);
+            playAudioQuestion();
+          }
+        }
+
+      } else {
+        $treadmill.show();
+
+        items = images;
+        item = getRandomInt(0, items.length - 1);
+
+        $treadmill.append('<div class="question-container"><div class="question-items"></div><div class="question-base"></div></div>');
+
+        var $question = $('.question-container .question-items');
+
+        for(var i = 1; i <= numberItems; i++) {
+          $question.append('<div class="question-item"><img src="'+urlAssets+items[item]+'" alt="imagem do jogo"></div>')
+        }
+
+        $('.question-container').addClass('question-move');
+        createOptionsAnswers(numberItems);
+
+        // Time that the user has for choose answer
+        gameTime = window.setTimeout(function() {
+
+          playAudio('wrong-answer');
+          newGame();
+
+        }, 15600);
+      }
+    };
+  }
+
+  function gameDefinedAnswers() {
+    newGame = function() {
+      $('.container').removeClass('vison-version-game');
+      $('.container').removeClass('audio-version-game');
+
+      if(typeGame == 'audio-version') {
+        $('.container').addClass(typeGame + '-game');
+      }
+
+      $('.question-container').remove();
+      $('.list-answers li').remove();
+
+      if(gameTime) {
+        window.clearTimeout(gameTime);
+      }
+
+      var $treadmill = $('.treadmill');
+      var items = questions;
+      var item = getRandomInt(1, Object.keys(items).length);
+      question = items[item];
+
+      if(typeGame == 'audio-version') {
+        $treadmill.hide();
+
+        function playAudioQuestion() {
+          audioPlayer.src = audios[question['asset']];
+          audioPlayer.play();
+          audioPlayer.addEventListener('ended', audioQuestionHandler, false);
+        }
+
+        playAudioQuestion();
+        createOptionsAnswers();
+
+        function audioQuestionHandler() {
+          audioPlayer.removeEventListener('ended', audioQuestionHandler, false);
+
+          $('.clock-tick')[0].play();
+
+          // Time that the user has for choose answer
+          gameTime = window.setTimeout(function() {
+            playAudio('wrong-answer');
+
+            $('.clock-tick')[0].pause();
+            $('.clock-tick').prop('currentTime', 0);
+
+            handleNewGameTime();
+          }, 13100);
+        }
+
+      } else {
+        $treadmill.show();
+
+        var image = question['asset'];
+
+        $treadmill.append('<div class="question-container"><div class="question-items"></div><div class="question-base"></div></div>');
+
+        var $question = $('.question-container .question-items');
+
+        $question.append('<div class="question-item"><img src="'+urlAssets+image+'" alt="Imagem do jogo"></div>')
+
+        $('.question-container').addClass('question-move');
+        createOptionsAnswers(question);
+
+        // Time that the user has for choose answer
+        gameTime = window.setTimeout(function() {
+
+          playAudio('wrong-answer');
+          newGame();
+
+        }, 15600);
+      }
+    };
+  }
+
 
   function changePage(newPage) {
     if(newPage) {
@@ -218,138 +399,77 @@ $(function(){
       }
 
       if(typeGame == 'audio-version') {
-        var answer = parseInt($('.list-answers .selected').data('answer'));
-        playAudio('numero-' + answer);
+        var answer = $('.list-answers .selected').data('answer');
+        playAudio(answer);
       }
-    }
-  }
-
-  function newGame() {
-    $('.container').removeClass('vison-version-game');
-    $('.container').removeClass('audio-version-game');
-
-
-
-    if(typeGame == 'audio-version') {
-      $('.container').addClass(typeGame + '-game');
-    }
-
-    $('.question-container').remove();
-    $('.list-answers li').remove();
-
-    if(gameTime) {
-      window.clearTimeout(gameTime);
-    }
-
-    var $treadmill = $('.treadmill');
-    var items;
-    var item;
-
-    numberItems = getRandomInt(0, 8);
-
-    if(typeGame == 'audio-version') {
-      $treadmill.hide();
-      numberItems = getRandomInt(1, 9);
-
-      items = sounds;
-      item = getRandomInt(0, items.length - 1);
-
-      var played = 0;
-
-      function playAudioQuestion() {
-        audioPlayer.src = audios[items[item]];
-        audioPlayer.play();
-        audioPlayer.addEventListener('ended', audioQuestionHandler, false);
-      }
-
-      playAudioQuestion();
-
-      function audioQuestionHandler() {
-        played++;
-
-        if(played >= numberItems) {
-
-          audioPlayer.removeEventListener('ended', audioQuestionHandler, false);
-
-          $('.clock-tick')[0].play();
-
-          createOptionsAnswers(numberItems);
-
-          // Time that the user has for choose answer
-          gameTime = window.setTimeout(function() {
-            playAudio('wrong-answer');
-
-            $('.clock-tick')[0].pause();
-            $('.clock-tick').prop('currentTime', 0);
-
-            handleNewGameTime();
-          }, 13100);
-
-        } else {
-          audioPlayer.removeEventListener('ended', audioQuestionHandler, false);
-          playAudioQuestion();
-        }
-      }
-
-    } else {
-      $treadmill.show();
-
-      items = images;
-      item = getRandomInt(0, items.length - 1);
-
-      $treadmill.append('<div class="question-container"><div class="question-items"></div><div class="question-base"></div></div>');
-
-      var $question = $('.question-container .question-items');
-
-      for(var i = 1; i <= numberItems; i++) {
-        $question.append('<div class="question-item"><img src="'+urlAssets+items[item]+'" alt="Item em movimento na esteira do jogo"></div>')
-      }
-
-      $('.question-container').addClass('question-move');
-      createOptionsAnswers(numberItems);
-
-      // Time that the user has for choose answer
-      gameTime = window.setTimeout(function() {
-
-        playAudio('wrong-answer');
-        newGame();
-
-      }, 15600);
     }
   }
 
   function createOptionsAnswers(_numberItems) {
-    var rightAnswer = _numberItems;
-    var optionsAnswers = [];
-    for(var n = 0; n <= 10; n++) {
-      optionsAnswers[n] = n;
-    }
+    if(gameEngine == 1) {
 
-    optionsAnswers.sort(function () { return Math.random() - 0.5; });
+      var rightAnswer = _numberItems;
+      var optionsAnswers = [];
 
-    // Create the options of answers
-    for(var a = 1; a <= 4; a++) {
-      var valueAnswer = optionsAnswers[a];
+      for(var n = 0; n <= 10; n++) {
+        optionsAnswers[n] = n;
+      }
 
-      $('.list-answers').append('<li><button type="button" class="btn btn-answer animated fadeInUp" data-answer="' + valueAnswer + '">' + valueAnswer + '</button></li>');
-    }
+      optionsAnswers.sort(function () { return Math.random() - 0.5; });
 
-    // Check if the options answers has a correct answer
-    var hasCorrectAnswer = $('.list-answers button[data-answer="'+rightAnswer+'"]').length;
+      // Create the options of answers
+      for(var a = 1; a <= 4; a++) {
+        var valueAnswer = optionsAnswers[a];
 
-    if(!hasCorrectAnswer) {
-      var rightAnswerPosition = getRandomInt(1, 4);
-      var $buttonAnswer = $('.list-answers li:nth-child('+rightAnswerPosition+') .btn');
+        $('.list-answers').append('<li><button type="button" class="btn btn-answer animated fadeInUp" data-answer="numero-' + valueAnswer + '">' + valueAnswer + '</button></li>');
+      }
 
-      $buttonAnswer.text(rightAnswer);
-      $buttonAnswer.attr('data-answer', rightAnswer);
+      // Check if the options answers has a correct answer
+      var hasCorrectAnswer = $('.list-answers button[data-answer="numero-'+rightAnswer+'"]').length;
+
+      if(!hasCorrectAnswer) {
+        var rightAnswerPosition = getRandomInt(1, 4);
+        var $buttonAnswer = $('.list-answers li:nth-child('+rightAnswerPosition+') .btn');
+
+        $buttonAnswer.text(rightAnswer);
+        $buttonAnswer.attr('data-answer', 'numero-' + rightAnswer);
+      }
+
+    } else if (gameEngine == 2) {
+      var answers = question['answers'];
+      console.log(answers);
+
+      for(var a = 0; a <= 3; a++) {
+        var valueAnswer = answers[a];
+        if(typeGame == 'audio-version') {
+          console.log('valueAnswer', valueAnswer);
+          $('.list-answers').append('<li><button type="button" class="btn btn-answer animated fadeInUp" data-answer="' + valueAnswer + '">' + a + '</button></li>');
+        } else {
+          console.log('valueAnswer', valueAnswer);
+          $('.list-answers').append('<li><button type="button" class="btn btn-answer animated fadeInUp">' + valueAnswer + '</button></li>');
+        }
+
+      }
     }
   }
 
   function checkAnswer() {
     if($('.list-answers .selected').length) {
-      var answer = parseInt($('.list-answers .selected').data('answer'));
-      var rightAnswer = numberItems;
+      var answer;
+      var rightAnswer;
+
+      if (gameEngine == 1) {
+
+        answer = $('.list-answers .selected').data('answer');
+        rightAnswer = "numero-" + numberItems;
+
+      } else if(gameEngine == 2) {
+
+        answer = $('.list-answers .selected').text();
+        var elAnswer = parseInt(question['correct_answer']);
+        rightAnswer = $('.list-answers li:nth-of-type('+elAnswer+') .btn').text();
+
+      }
 
       if(typeGame == 'audio-version') {
         $('.clock-tick')[0].pause();
@@ -471,7 +591,6 @@ $(function(){
     audiosLoaded++;
 
     if (audiosLoaded >= totalAudios) {
-      init();
       $('.preloader-bar').css('width',  "0%");
     } else {
       preloadAudio(preloadControl[audiosLoaded]);
@@ -505,6 +624,7 @@ $(function(){
     }
   }
 
+  init();
   // preloading the audio files
   preloadAudio(preloadControl[audiosLoaded]);
 });

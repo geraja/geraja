@@ -40,6 +40,10 @@ a {
 .main-content {
   padding: 20px;
 }
+
+hr {
+  border: 1px solid lighten($grey, 40%);
+}
 /*
 |----------------------------------------------------
 | Templates
@@ -103,7 +107,7 @@ a {
   }
 
   .game-content {
-    padding-top: 2em;
+    padding-top: 1em;
 
     & + .game-content {
       margin-top: 2em;
@@ -115,6 +119,11 @@ a {
       width: 100%;
       margin-top: 3em;
     }
+  }
+
+  .game-questions {
+    padding: 10px;
+    background-color: #f3f3f3;
   }
 }
 
@@ -183,7 +192,7 @@ a {
 
   .col-brand {
     text-align: center;
-      border-right: 1px solid #ff838f;
+    border-right: 1px solid #ff838f;
 
     .logo-brand {
       font-size: 1em;
@@ -229,6 +238,7 @@ a {
   border-radius: 3px;
 
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .btn-small {
@@ -330,7 +340,17 @@ a {
     display: block;
   }
 
+  .form-group {
+    display: block;
+    width: 100%;
+  }
+
   .form-group + .form-group { margin-top: 1em; }
+
+  .label-control {
+    padding-top: 10px;
+    text-align: center;
+  }
 }
 
 /* | Inputs (text, password, email, select, textarea, etc) | */
@@ -614,12 +634,64 @@ a {
       }
 
       img {
-        max-width: 32px;
         height: auto;
 
         & + img {
           margin-left: 2px;
         }
+      }
+    }
+  }
+}
+
+.game-engine-1 {
+  .question-items {
+    img {
+      max-width: 32px;
+    }
+  }
+
+  .list-answers {
+    text-align: center;
+
+    li {
+      display: inline-block;
+
+      & + li {
+        margin-left: 80px;
+      }
+
+      .btn {
+        width: 120px;
+        padding: 20px 0px;
+        font-size: 28px;
+      }
+    }
+  }
+}
+
+.game-engine-2 {
+  .question-items {
+    img {
+      max-width: 200px;
+    }
+  }
+
+  .list-answers {
+    text-align: center;
+
+    li {
+      width: 90%;
+      display: block;
+      margin-left: 80px;
+
+      & + li {
+        margin-top: 5px;
+      }
+
+      .btn {
+        width: 100%;
+        padding: 5px;
       }
     }
   }
@@ -634,21 +706,11 @@ a {
     text-align: center;
 
     li {
-      display: inline-block;
-
-      & + li {
-        margin-left: 80px;
-      }
 
       .btn {
         position: relative;
-        width: 120px;
-        padding: 20px 0px;
         outline: 0;
-
-        font-size: 28px;
         font-weight: bold;
-
         border-width: 2px;
         background-color: #efefef;
 

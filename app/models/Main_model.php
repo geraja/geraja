@@ -127,6 +127,21 @@ class Main_model extends CI_Model {
       return 1;
     }
   }
+
+  public function get_game_questions($where = null, $limit = 100, $offset = 0, $order_field = null, $order = 'asc')
+  {
+    if(is_array($where)) $this->db->where($where);
+    if($order_field) $this->db->order_by($order_field, $order);
+
+    $this->db->select('game_questions.*, assets.name AS name');
+
+    $this->db->join('assets', 'assets.id_asset = game_questions.id_asset', 'left');
+
+    $query = $this->db->get('game_questions', $limit, $offset);
+
+    if($query->num_rows()) return $query->result();
+    else return false;
+  }
 }
 
 /* End of file main_model.php */

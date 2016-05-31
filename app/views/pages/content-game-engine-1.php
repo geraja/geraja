@@ -4,7 +4,12 @@
     <div class="col-md-8">
       <h1>Configuração do jogo<?= $game_name; ?></h1>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3 text-right">
+      <?php if(isset($images) || isset($audios)): ?>
+        <a target="_blank" class="btn btn-green btn-small" href="<?= base_url('jogo/' . $game['code']); ?>">Visualizar o jogo</a>
+      <?php endif; ?>
+    </div>
+    <div class="col-md-1 text-right">
       <a class="btn btn-default" href="<?= base_url('gerenciador'); ?>">Voltar</a>
     </div>
   </div>
@@ -22,7 +27,11 @@
     <div class="game-config">
       <?php if($game['type'] == 1): ?>
         <div class="game-content">
-          <h2 class="game-content-title">Imagens do jogo (<span>versão para jogar vendo</span>)</h2>
+          <div class="row">
+            <div class="col-md-12">
+              <h2 class="game-content-title">Imagens do jogo (<span>versão para jogar vendo</span>)</h2>
+            </div>
+          </div>
           <div class="alert alert-info">
             <p><b>Confira algumas informações importantes sobre as imagens:</b></p>
             <ul>
@@ -74,7 +83,12 @@
 
       <?php if($game['type'] == 2): ?>
         <div class="game-content">
-          <h2 class="game-content-title">Áudios do jogo (<span>versão para jogar ouvindo</span>)</h2>
+          <div class="row">
+            <div class="col-md-12">
+              <h2 class="game-content-title">Áudios do jogo (<span>versão para jogar ouvindo</span>)</h2>
+            </div>
+          </div>
+
           <div class="alert alert-info">
             <p><b>Confira algumas informações importantes sobre os áudios:</b></p>
             <ul>
