@@ -221,31 +221,55 @@
           </div>
 
           <div class="game-content-list">
-            <?php if(isset($audios)): ?>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Nome do arquivo</th>
-                    <th>Áudio</th>
-                    <th>Adicionado em</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php foreach ($audios as $a): ?>
+            <?php if(isset($assets)): ?>
+              <div class="game-questions">
+                <table class="table">
+                  <thead>
                     <tr>
-                      <td><?= $a->name; ?></td>
-                      <td>
-                        <audio src="<?= $path_assets . $a->name; ?>" controls></audio>
-                      </td>
-                      <td><?= display_date($a->inserted_at); ?></td>
-                      <td>
-                        <a class="btn btn-red btn-small" href="#">Desativar áudio</a>
-                      </td>
+                      <th>Áudio</th>
+                      <th>Áudios de Alternativas</th>
+                      <th>Resposta</th>
+                      <th></th>
                     </tr>
-                  <?php endforeach; ?>
-                </tbody>
-              </table>
+                  </thead>
+
+                  <tbody>
+                    <?php foreach($assets as $a): ?>
+                      <tr>
+                        <td>
+                          <div><audio src="<?= $path_assets . $a->name; ?>" controls></audio></div>
+                        </td>
+                        <td>
+                          <div>
+                            <span class="col-md-1">A.</span><audio src="<?= $path_assets . $a->first_option; ?>" controls></audio>
+                          </div>
+                          <div>
+                            <span class="col-md-1">B.</span><audio src="<?= $path_assets . $a->second_option; ?>" controls></audio>
+                          </div>
+                          <div>
+                            <span class="col-md-1">C.</span><audio src="<?= $path_assets . $a->third_option; ?>" controls></audio>
+                          </div>
+                          <div>
+                            <span class="col-md-1">D.</span><audio src="<?= $path_assets . $a->fourth_option; ?>" controls></audio>
+                          </div>
+                        </td>
+                        <td>
+                          <?php
+                          $answers_name = array(1 => 'A', 2 => 'B', 3 => 'C', 4 => 'D');
+                          echo $answers_name[$a->correct_answer];
+                          ?>
+                        </td>
+                        <td>
+                          <a class="btn btn-red btn-small" href="#">Desativar questão</a>
+                          <a class="btn btn-default btn-small" href="#">Editar</a>
+                        </td>
+                      </tr>
+                    <?php endforeach; ?>
+                  </tbody>
+
+                </table>
+              </div>
+
             <?php endif; ?>
           </div>
         </div>
