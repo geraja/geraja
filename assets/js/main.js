@@ -400,6 +400,7 @@ $(function(){
 
       if(typeGame == 'audio-version') {
         var answer = $('.list-answers .selected').data('answer');
+
         playAudio(answer);
       }
     }
@@ -437,15 +438,12 @@ $(function(){
 
     } else if (gameEngine == 2) {
       var answers = question['answers'];
-      console.log(answers);
 
       for(var a = 0; a <= 3; a++) {
         var valueAnswer = answers[a];
         if(typeGame == 'audio-version') {
-          console.log('valueAnswer', valueAnswer);
           $('.list-answers').append('<li><button type="button" class="btn btn-answer animated fadeInUp" data-answer="' + valueAnswer + '">' + a + '</button></li>');
         } else {
-          console.log('valueAnswer', valueAnswer);
           $('.list-answers').append('<li><button type="button" class="btn btn-answer animated fadeInUp">' + valueAnswer + '</button></li>');
         }
 
@@ -586,6 +584,12 @@ $(function(){
     audio.addEventListener('canplaythrough', loadedAudio);
     audio.src = url;
   }
+
+  $.each(audios, function(index, value) {
+    if(!$('.' + index).length) {
+      $('.sounds-effects').append('<audio class="audio '+index+'" preload="auto" src="'+value+'"></audio>');
+    }
+  })
 
   function loadedAudio() {
     audiosLoaded++;

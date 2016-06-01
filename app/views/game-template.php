@@ -10,7 +10,7 @@
 
   ?>
   <title><?= $the_title; ?></title>
-  <link rel="stylesheet" href="<?= base_url('public/css/main.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('public/css/main.css?v=6gkaso8') ?>">
   <link rel="icon" href="<?= base_url('public/images/favicon.png'); ?>">
 </head>
 <body class="game-template game-engine-<?= $game['engine'] ?>">
@@ -76,6 +76,7 @@
         questions[(Object.keys(questions).length + 1)] = question;
 
         var soundUrl;
+        var audioEl;
 
         // Alternativa A
         soundName = "<?= substr($a->first_option, 0, -4); ?>";
@@ -100,16 +101,15 @@
         sounds.push(soundName);
         soundUrl = "<?= $assets_url . $a->fourth_option; ?>";
         soundsAssets[soundName] = soundUrl;
+
       <?php endif; ?>
 
     <?php endforeach; ?>
-
-    console.log(questions);
 
   <?php endif; ?>
 
 </script>
 
-<script src="<?php echo base_url('public/js/main.js'); ?>"></script>
+<script src="<?php echo base_url('public/js/main.js?v=6gkaso8'); ?>"></script>
 </body>
 </html>
