@@ -258,6 +258,7 @@ class Gerenciador extends CI_Controller {
             $config['image_library'] = 'gd2';
             $config['source_image'] = "$game_folder/" . $image['file_name'];
             $config['create_thumb'] = false;
+            $config['master_dim'] = 'width';
             $config['maintain_ratio'] = true;
             $config['width'] = $width_control;
             $config['height'] = $width_control;
