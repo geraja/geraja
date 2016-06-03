@@ -248,8 +248,8 @@ class Gerenciador extends CI_Controller {
           $height_control = 400;
 
           if($question_options) {
-            $width_control = 400;
-            $height_control = 400;
+            $width_control = 500;
+            $height_control = 500;
           }
 
           if($image['image_width'] > $width_control || $image['image_height'] > $height_control) {
