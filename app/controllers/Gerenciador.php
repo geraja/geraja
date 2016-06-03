@@ -438,6 +438,47 @@ class Gerenciador extends CI_Controller {
     redirect(base_url('gerenciador'));
   }
 
+  public function alterar_status($tipo = null)
+  {
+    if($tipo) {
+      switch ($tipo) {
+        case 'questao':
+          $question_status = $this->input->post('question_status');
+          $question_status = intval($question_status);
+          $id_game = $this->input->post('id_game');
+          $id_question = $this->input->post('id_question');
+
+          if($question_status !== null && $id_game && $id_question) {
+
+            $object_update = array('active' => $question_status);
+            $where = array('id_game' => $id_game, 'id_game_question' => $id_question);
+
+            $update_question = $this->main_model->update_item('game_questions', $where, $object_update);
+
+            if($update_question) {
+              $flashdata['alert_type'] = 'alert-success';
+              $flashdata['alert_message'] = "O status da questão foi atualizado com sucesso!.";
+              $this->session->set_flashdata($flashdata);
+            } else {
+              $flashdata['alert_type'] = 'alert-danger';
+              $flashdata['alert_message'] = 'Não foi possível o status da questão, por favor tente novamente.';
+              $this->session->set_flashdata($flashdata);
+            }
+
+            redirect(base_url("gerenciador/jogo/$id_game"));
+          } else {
+            $flashdata['alert_type'] = 'alert-danger';
+              $flashdata['alert_message'] = 'Não foi possível carregar os dados para atualziar o status da questão, por favor tente novamente.';
+              $this->session->set_flashdata($flashdata);
+            redirect(base_url("gerenciador/jogo/$id_game"));
+          }
+          break;
+      }
+    } else {
+      redirect(base_url('gerenciador'));
+    }
+  }
+
 }
 
 /* End of file Gerenciador.php */

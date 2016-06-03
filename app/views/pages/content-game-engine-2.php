@@ -124,10 +124,10 @@
                           <img src="<?= $path_assets . $a->name; ?>" alt="Imagem da questão">
                         </td>
                         <td>
-                          <p><b>A - </b> <?= $a->first_option; ?></p>
-                          <p><b>B - </b> <?= $a->second_option; ?></p>
-                          <p><b>C - </b> <?= $a->third_option; ?></p>
-                          <p><b>D - </b> <?= $a->fourth_option; ?></p>
+                          <b>A - </b> <?= $a->first_option; ?><br>
+                          <b>B - </b> <?= $a->second_option; ?><br>
+                          <b>C - </b> <?= $a->third_option; ?><br>
+                          <b>D - </b> <?= $a->fourth_option; ?>
                         </td>
                         <td>
                           <?php
@@ -136,7 +136,20 @@
                           ?>
                         </td>
                         <td>
-                          <a class="btn btn-red btn-small" href="#">Desativar questão</a>
+                          <div class="clearfix" style="padding: 0 0 20px;">
+                            <?= form_open(base_url('gerenciador/alterar-status/questao'), '', $hiddens); ?>
+                              <input type="hidden" name="id_question" id="id_question" value="<?= $a->id_game_question ?>">
+
+                            <?php if($a->active): ?>
+                              <input type="hidden" name="question_status" id="question_status" value="0">
+                              <button type="submit" class="btn btn-red btn-small" href="<?= base_url('gerenciador/alterar-status/questao'); ?>">Desativar questão</button>
+                            <?php else: ?>
+                              <input type="hidden" name="question_status" id="question_status" value="1">
+                              <button type="submit" class="btn btn-green btn-small" href="<?= base_url('gerenciador/alterar-status/questao'); ?>">Ativar questão</button>
+                            <?php endif; ?>
+
+                            <?= form_close(); ?>
+                          </div>
                           <a class="btn btn-default btn-small" href="#">Editar</a>
                         </td>
                       </tr>
@@ -260,7 +273,20 @@
                           ?>
                         </td>
                         <td>
-                          <a class="btn btn-red btn-small" href="#">Desativar questão</a>
+                          <div class="clearfix" style="padding: 0 0 20px;">
+                            <?= form_open(base_url('gerenciador/alterar-status/questao'), '', $hiddens); ?>
+                              <input type="hidden" name="id_question" id="id_question" value="<?= $a->id_game_question ?>">
+
+                            <?php if($a->active): ?>
+                              <input type="hidden" name="question_status" id="question_status" value="0">
+                              <button type="submit" class="btn btn-red btn-small" href="<?= base_url('gerenciador/alterar-status/questao'); ?>">Desativar questão</button>
+                            <?php else: ?>
+                              <input type="hidden" name="question_status" id="question_status" value="1">
+                              <button type="submit" class="btn btn-green btn-small" href="<?= base_url('gerenciador/alterar-status/questao'); ?>">Ativar questão</button>
+                            <?php endif; ?>
+
+                            <?= form_close(); ?>
+                          </div>
                           <a class="btn btn-default btn-small" href="#">Editar</a>
                         </td>
                       </tr>
