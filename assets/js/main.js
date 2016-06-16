@@ -10,6 +10,8 @@ $(function(){
   var totalAudios = 0;
   var audioPlayer = document.getElementById('audio-player');
   var newGame;
+  var currentQuestion = 0;
+  var totalQuestions = 0;
 
   if(gameEngine) {
     switch(gameEngine) {
@@ -50,7 +52,15 @@ $(function(){
         numberItems = getRandomInt(1, 9);
 
         items = sounds;
-        item = getRandomInt(0, items.length - 1);
+        totalQuestions = (items.length - 1);
+
+        if(currentQuestion < totalQuestions) {
+          currentQuestion++;
+        } else {
+          currentQuestion = 0;
+        }
+
+        item = currentQuestion;
 
         var played = 0;
 
@@ -93,7 +103,15 @@ $(function(){
         $treadmill.show();
 
         items = images;
-        item = getRandomInt(0, items.length - 1);
+        totalQuestions = (items.length - 1);
+
+        if(currentQuestion < totalQuestions) {
+          currentQuestion++;
+        } else {
+          currentQuestion = 0;
+        }
+
+        item = currentQuestion;
 
         $treadmill.append('<div class="question-container"><div class="question-items"></div><div class="question-base"></div></div>');
 
@@ -135,7 +153,17 @@ $(function(){
 
       var $treadmill = $('.treadmill');
       var items = questions;
-      var item = getRandomInt(1, Object.keys(items).length);
+
+      totalQuestions = Object.keys(items).length;
+
+      if(currentQuestion < totalQuestions) {
+        currentQuestion++;
+      } else {
+        currentQuestion = 1;
+      }
+
+      var item = currentQuestion;
+
       question = items[item];
 
       if(typeGame == 'audio-version') {

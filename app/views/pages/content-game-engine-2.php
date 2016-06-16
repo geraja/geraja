@@ -55,29 +55,29 @@
             <div class="form-group">
               <div class="row">
                 <label for="first-option" class="label-control col-md-1">A</label>
-                <input type="text" name="first-option" id="first-option" placeholder="Alternativa A" class="input-control col-md-10"
-                required="required" value="<?= set_value('first-option'); ?>">
+                <input type="text" name="first-option" id="first-option" placeholder="Alternativa A (máximo de 80 caracteres)" class="input-control col-md-10"
+                required="required" value="<?= set_value('first-option'); ?>" maxlength="80">
               </div>
             </div>
             <div class="form-group">
               <div class="row">
                 <label for="second-option" class="label-control col-md-1">B</label>
-                <input type="text" name="second-option" id="second-option" placeholder="Alternativa B" class="input-control col-md-10"
-                required="required" value="<?= set_value('second-option'); ?>">
+                <input type="text" name="second-option" id="second-option" placeholder="Alternativa B (máximo de 80 caracteres)" class="input-control col-md-10"
+                required="required" value="<?= set_value('second-option'); ?>" maxlength="80">
               </div>
             </div>
             <div class="form-group">
               <div class="row">
                 <label for="third-option" class="label-control col-md-1">C</label>
-                <input type="text" name="third-option" id="third-option" placeholder="Alternativa C" class="input-control col-md-10"
-                required="required" value="<?= set_value('third-option'); ?>">
+                <input type="text" name="third-option" id="third-option" placeholder="Alternativa C (máximo de 80 caracteres)" class="input-control col-md-10"
+                required="required" value="<?= set_value('third-option'); ?>" maxlength="80">
               </div>
             </div>
             <div class="form-group">
               <div class="row">
                 <label for="fourth-option" class="label-control col-md-1">D</label>
-                <input type="text" name="fourth-option" id="fourth-option" placeholder="Alternativa D" class="input-control col-md-10"
-                required="required" value="<?= set_value('fourth-option'); ?>">
+                <input type="text" name="fourth-option" id="fourth-option" placeholder="Alternativa D (máximo de 80 caracteres)" class="input-control col-md-10"
+                required="required" value="<?= set_value('fourth-option'); ?>" maxlength="80">
               </div>
             </div>
             <div class="form-group">

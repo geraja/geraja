@@ -687,6 +687,11 @@ hr {
 }
 
 .game-engine-2 {
+
+  .answers {
+    bottom: 50px;
+  }
+
   .question-items {
     img {
       max-width: 200px;
@@ -697,17 +702,18 @@ hr {
     text-align: center;
 
     li {
-      width: 90%;
-      display: block;
-      margin-left: 80px;
+      width: 20%;
+      display: inline-block;
 
       & + li {
-        margin-top: 5px;
+        margin-left: 20px;
       }
 
       .btn {
-        width: 100%;
-        padding: 5px;
+        width: 90%;
+        height: 140px;
+        padding: 10px 5px;
+        vertical-align: middle;
       }
     }
   }
@@ -729,6 +735,7 @@ hr {
         font-weight: bold;
         border-width: 2px;
         background-color: #efefef;
+        white-space: normal;
 
         -vendor-animation-delay: 1.5s;
         -webkit-animation-delay: 1.5s;
@@ -748,7 +755,7 @@ hr {
           content: '';
           position: absolute;
           z-index: 2;
-          left: -68px;
+          left: -65px;
           top: 50%;
 
           opacity: 0;
