@@ -1,10 +1,16 @@
 <section class="page-section">
   <h1>Todos os jogos publicados (<?= $total_games; ?>):</h1>
-<?php if(isset($games)): ?>
+  <?php if(isset($games)): ?>
 
     <div class="container-games">
-      <div class="row">
-        <?php foreach($games as $g): ?>
+
+      <?php $row_control = 1; ?>
+      <?php foreach($games as $g): ?>
+
+        <?php if($row_control == 1): ?>
+          <div class="row">
+        <?php endif; ?>
+
           <div class="col-md-3">
 
             <div class="game-item <?= $g->type == 1 ? 'game-type-1' : 'game-type-2'; ?>">
@@ -20,8 +26,15 @@
             </div>
 
           </div>
-        <?php endforeach; ?>
-      </div>
+
+        <?php if($row_control == 4): ?>
+          <?php $row_control = 0; ?>
+          </div>
+        <?php endif; ?>
+
+        <?php $row_control++; ?>
+      <?php endforeach; ?>
+
     </div>
 
     <?php if(isset($pagination)): ?>
@@ -34,5 +47,5 @@
     <p>Não foi possível carregar os jogos. Iremos resolver o quanto antes, por favor tente acessar novamente mais tarde.</p>
   <?php endif; ?>
 
-  </section>
+</section>
 
