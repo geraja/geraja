@@ -5,7 +5,60 @@ class App extends CI_Controller {
 
   public function index()
   {
-    $this->template->load('pages-template', 'pages/home-page');
+    $per_page = 4;
+    $data = array();
+
+    $where = array('active' => 1);
+    $games = $this->main_model->get_items('games', $where, $per_page, 0, 'id_game', 'desc');
+
+    if($games) {
+      $data['games'] = $games;
+    }
+
+
+
+    $this->template->load('pages-template', 'pages/home-page', $data);
+  }
+
+  public function jogos($page = 1)
+  {
+    $data['page_title'] = 'Jogos';
+
+    // Configuração da paginação
+    $per_page = 20;
+    $offset = $per_page * ($page - 1);
+
+    $where = array('active' => 1);
+    $games = $this->main_model->get_items('games', $where, $per_page, $offset, 'id_game', 'desc');
+
+    $total_games = 0;
+
+    if($games) {
+      $data['games'] = $games;
+
+      $total_games = $this->main_model->get_total_items('games', $where);
+      $this->load->library('pagination');
+
+      $config['base_url'] = base_url('jogos');
+      $config['total_rows'] = $total_games;
+      $config['use_page_numbers'] = true;
+      $config['num_links'] = 10;
+      $config['first_link'] = 'Início';
+      $config['last_link'] = 'Fim';
+      $config['per_page'] = $per_page;
+
+      $this->pagination->initialize($config);
+
+      $pagination = $this->pagination->create_links();
+
+      if($pagination) {
+        $data['pagination'] = $pagination;
+      }
+    }
+
+    $data['total_games'] = $total_games;
+
+    $this->template->load('pages-template', 'pages/list-games', $data);
   }
 
   public function jogo($unique_name = null)

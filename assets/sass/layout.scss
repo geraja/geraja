@@ -71,30 +71,40 @@ hr {
     .game-item {
       text-align: center;
 
-      &.seeing-version {
-        .game-thumb {
-          background-color: #efefef;
-        }
-      }
-
-      &.listening-version {
+      &.game-type-2 {
         .game-thumb {
           background-color: #333;
+
+          a {
+            color: #fff;
+          }
         }
       }
 
       .game-thumb {
         height: 140px;
-        border: 1px solid #eee;
-        line-height: 135px;
+        padding: 22px 0;
+        border: 1px solid #d8d8d8;
 
         img {
           vertical-align: middle;
         }
+
+        a {
+          @include reset-link;
+          font-size: .9em;
+          width: 100%;
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
       }
 
       .game-title {
-        font-size: 1.2em;
+        font-size: 1.1em;
+        margin-top: 10px;
+        font-weight: normal;
 
         a {
           @include reset-link;
@@ -180,6 +190,7 @@ hr {
   display: block;
   width: 100%;
   padding: 0 10px;
+  overflow: hidden;
 
   color: #fff;
   background-color: $brand-color;
@@ -208,7 +219,8 @@ hr {
 
   .col-brand {
     text-align: center;
-    border-right: 1px solid #ff838f;
+    border-right: 1px solid #ef939c;
+    background-color: #ff838f;
 
     .logo-brand {
       font-size: 1em;
@@ -401,6 +413,43 @@ hr {
   input[type="checkbox"] {
     position: relative;
     top: 2px;
+  }
+}
+
+/*
+|----------------------------------------------------
+| Pagination links/nav
+|----------------------------------------------------
+*/
+
+.pagination {
+  display: block;
+  width: 100%;
+  padding: 1em 0;
+  margin: 1em 0;
+  border-top: 1px solid #d8d8d8;
+
+  a,
+  strong {
+    padding: 5px 10px;
+    border: 1px solid #d8d8d8;
+    border-radius: 4px;
+
+    @include reset-link;
+
+    & + a,
+    & + strong {
+      margin-left: 10px;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  strong {
+    background-color: #e3e3e3;
+    cursor: default;
   }
 }
 

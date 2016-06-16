@@ -12,6 +12,7 @@
           <li><a href="<?= base_url('criar-conta'); ?>">Criar conta</a></li>
           <li><a href="<?= base_url('login'); ?>">Login</a></li>
         <?php endif; ?>
+        <li><a href="<?= base_url('jogos'); ?>">Jogos</a></li>
         <li><a href="<?= base_url('sobre'); ?>">Sobre</a></li>
         <li><a href="<?= base_url('contato'); ?>">Contato</a></li>
       </ul>

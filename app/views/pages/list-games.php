@@ -1,21 +1,7 @@
 <section class="page-section">
-  <h2 class="text-center">Confira alguns jogos criados por usuários</h2>
-  <div class="row text-center">
-    <div class="col-md-4">
-      <p><b>1.</b> Crie uma conta apenas com email e senha.</p>
-    </div>
-    <div class="col-md-4">
-      <p><b>2.</b> Gere jogos para jogar vendo ou jogar ouvindo</p>
-    </div>
-    <div class="col-md-4">
-      <p><b>3.</b> Compartilhe os jogos com outros usuários</p>
-    </div>
-  </div>
-</section>
-
+  <h1>Todos os jogos publicados (<?= $total_games; ?>):</h1>
 <?php if(isset($games)): ?>
-  <section class="page-section">
-    <h2 class="text-center">Confira alguns jogos criados por usuários</h2>
+
     <div class="container-games">
       <div class="row">
         <?php foreach($games as $g): ?>
@@ -37,8 +23,16 @@
         <?php endforeach; ?>
       </div>
     </div>
+
+    <?php if(isset($pagination)): ?>
+      <div class="pagination">
+        <?= $pagination; ?>
+      </div>
+    <?php endif; ?>
+
+  <?php else: ?>
+    <p>Não foi possível carregar os jogos. Iremos resolver o quanto antes, por favor tente acessar novamente mais tarde.</p>
+  <?php endif; ?>
+
   </section>
-  <p class="text-center">
-    <a class="btn btn-action" href="<?= base_url('jogos'); ?>">Ver todos os jogos</a>
-  </p>
-<?php endif; ?>
+

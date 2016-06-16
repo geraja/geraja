@@ -142,6 +142,13 @@ class Main_model extends CI_Model {
     if($query->num_rows()) return $query->result();
     else return false;
   }
+
+  public function get_total_items($table = null, $where = null){
+    if(is_array($where)) $this->db->where($where);
+
+    $query = $this->db->get($table);
+    return $query->num_rows();
+  }
 }
 
 /* End of file main_model.php */
