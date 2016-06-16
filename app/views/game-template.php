@@ -10,7 +10,7 @@
 
   ?>
   <title><?= $the_title; ?></title>
-  <link rel="stylesheet" href="<?= base_url('public/css/main.css?v=2rhas15') ?>">
+  <link rel="stylesheet" href="<?= base_url('public/css/main.css?v=' . md5(rand())) ?>">
   <link rel="icon" href="<?= base_url('public/images/favicon.png'); ?>">
 </head>
 <body class="game-template game-engine-<?= $game['engine'] ?>">
@@ -110,6 +110,6 @@
 
 </script>
 
-<script src="<?php echo base_url('public/js/main.js?v=2rhas15'); ?>"></script>
+<script src="<?php echo base_url('public/js/main.js?v=' . md5(rand())); ?>"></script>
 </body>
 </html>
