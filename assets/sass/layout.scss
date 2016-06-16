@@ -71,19 +71,33 @@ hr {
     .game-item {
       text-align: center;
 
+      &.game-type-1 {
+        .game-thumb {
+          .game-type-text {
+            a {
+              background-color: $yellow;
+            }
+          }
+        }
+      }
+
       &.game-type-2 {
         .game-thumb {
+          padding-top: 8px;
           background-color: #333;
 
-          a {
-            color: #fff;
+          .game-type-text {
+            a {
+              color: #fff;
+              background-color: $blue;
+            }
           }
         }
       }
 
       .game-thumb {
         height: 140px;
-        padding: 22px 0;
+        padding: 25px 0;
         border: 1px solid #d8d8d8;
 
         img {
@@ -94,6 +108,8 @@ hr {
           @include reset-link;
           font-size: .9em;
           width: 100%;
+          padding: 2px 6px;
+          border-radius: 4px;
 
           &:hover {
             text-decoration: none;

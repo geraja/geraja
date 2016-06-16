@@ -14,7 +14,7 @@
           <div class="col-md-3">
 
             <div class="game-item <?= $g->type == 1 ? 'game-type-1' : 'game-type-2'; ?>">
-              <?php $game_image = ($g->type == 1) ? 'eye.svg' : 'low-vision.svg'; ?>
+              <?php $game_image = ($g->type == 1) ? 'eye.svg' : 'audio-version.svg'; ?>
               <?php $game_url = base_url('jogo/' . $g->code); ?>
               <div class="game-thumb">
                 <a href="<?= $game_url; ?>"><img src="<?= base_url('public/images/' . $game_image); ?>" alt="<?= $g->name; ?>" width="60"></a>
