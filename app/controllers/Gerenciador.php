@@ -198,7 +198,7 @@ class Gerenciador extends CI_Controller {
       $game_folder = game_folder($id_game, $this->uid);
 
       $config['upload_path'] = $game_folder;
-      $config['allowed_types'] = 'png|jpg';
+      $config['allowed_types'] = 'png|jpg|jpeg';
       $config['min_width'] = 16;
 
       $this->load->library('upload', $config);
