@@ -450,7 +450,7 @@ $(function(){
       for(var a = 1; a <= 4; a++) {
         var valueAnswer = optionsAnswers[a];
 
-        $('.list-answers').append('<li><button type="button" class="btn btn-answer animated fadeInUp" data-answer="numero-' + valueAnswer + '">' + valueAnswer + '</button></li>');
+        $('.list-answers').append('<li class="col-md-3"><button type="button" class="btn btn-answer animated fadeInUp" data-answer="numero-' + valueAnswer + '">' + valueAnswer + '</button></li>');
       }
 
       // Check if the options answers has a correct answer
@@ -470,9 +470,9 @@ $(function(){
       for(var a = 0; a <= 3; a++) {
         var valueAnswer = answers[a];
         if(typeGame == 'audio-version') {
-          $('.list-answers').append('<li><button type="button" class="btn btn-answer animated fadeInUp" data-answer="' + valueAnswer + '">' + a + '</button></li>');
+          $('.list-answers').append('<li class="col-md-3"><button type="button" class="btn btn-answer animated fadeInUp" data-answer="' + valueAnswer + '">' + a + '</button></li>');
         } else {
-          $('.list-answers').append('<li><button type="button" class="btn btn-answer animated fadeInUp">' + valueAnswer + '</button></li>');
+          $('.list-answers').append('<li class="col-md-3"><button type="button" class="btn btn-answer animated fadeInUp">' + valueAnswer + '</button></li>');
         }
 
       }
@@ -513,7 +513,7 @@ $(function(){
         score++;
 
         var strScore = score < 10 ? '0' + score : score;
-        $('.score').text(strScore);
+        $('.score').text(strScore + '/10');
 
         // Score animation
       } else {
@@ -546,7 +546,7 @@ $(function(){
 
   function resetGame() {
     score = 0;
-    $('.score').text('00');
+    $('.score').text('00/10');
 
     $('.question-container').remove();
     $('.list-answers li').remove();

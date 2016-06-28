@@ -17,3 +17,14 @@
     text-decoration: underline;
   }
 }
+
+@mixin linear-grad($first_color, $second_color) {
+  background: $first_color;
+  background: -moz-linear-gradient(top, $first_color 0%, $second_color 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, $first_color), color-stop(100%, $second_color));
+  background: -webkit-linear-gradient(top, $first_color 0%, $second_color 100%);
+  background: -o-linear-gradient(top, $first_color 0%, $second_color 100%);
+  background: -ms-linear-gradient(top, $first_color 0%, $second_color 100%);
+  background: linear-gradient(to bottom, $first_color 0%, $second_color 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$first_color, endColorstr=$second_color, GradientType=0 );
+}

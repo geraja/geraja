@@ -57,7 +57,7 @@
 
       <section class="game-page" id="game-page-3">
         <div class="game-example">
-          <div class="score">00</div>
+          <div class="score">00/10</div>
 
           <div class="treadmill">
 
