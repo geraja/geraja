@@ -4,6 +4,7 @@ $(function(){
   var levelGame = parseInt($('.level-items .selected').data('game-level'));
   var score = 0;
   var numberItems = 0;
+  var gameTimeLevel = {1: 23100, 2: 17100, 3: 16100, 4: 15100, 5: 13100, 6: 8100};
   var gameTime;
   var audios;
   var audiosLoaded = 0;
@@ -44,6 +45,7 @@ $(function(){
       var $treadmill = $('.treadmill');
       var items;
       var item;
+      var countdown = gameTimeLevel[levelGame];
 
       numberItems = getRandomInt(0, 8);
 
@@ -122,6 +124,7 @@ $(function(){
         }
 
         $('.question-container').addClass('question-move');
+        $('.question-container').addClass('speed-' + levelGame);
         createOptionsAnswers(numberItems);
 
         // Time that the user has for choose answer
@@ -153,6 +156,8 @@ $(function(){
 
       var $treadmill = $('.treadmill');
       var items = questions;
+      var countdown = gameTimeLevel[levelGame];
+      console.log(levelGame, countdown);
 
       totalQuestions = Object.keys(items).length;
 
@@ -191,7 +196,7 @@ $(function(){
             $('.clock-tick').prop('currentTime', 0);
 
             handleNewGameTime();
-          }, 13100);
+          }, countdown);
         }
 
       } else {
@@ -206,6 +211,7 @@ $(function(){
         $question.append('<div class="question-item"><img src="'+urlAssets+image+'" alt="Imagem do jogo"></div>')
 
         $('.question-container').addClass('question-move');
+        $('.question-container').addClass('speed-' + levelGame);
         createOptionsAnswers(question);
 
         // Time that the user has for choose answer
@@ -214,7 +220,7 @@ $(function(){
           playAudio('wrong-answer');
           newGame();
 
-        }, 15600);
+        }, (countdown + 2600));
       }
     };
   }

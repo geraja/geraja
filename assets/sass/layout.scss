@@ -563,7 +563,7 @@ hr {
       top: 20px;
       left: 50%;
       width: 320px;
-      margin-left: -130px;
+      margin-left: -160px;
       font-size: 1.2em;
     }
 
@@ -929,8 +929,43 @@ hr {
 }
 
 .question-move {
-  -webkit-animation: question-move linear 16s infinite;
-  animation: question-move linear 16s infinite;
+  -webkit-animation-name: question-move;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+
+  animation-name: question-move;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.speed-1 {
+  -webkit-animation-duration: 26s;
+  animation-duration: 26s;
+}
+
+.speed-2 {
+  -webkit-animation-duration: 20s;
+  animation-duration: 20s;
+}
+
+.speed-3 {
+  -webkit-animation-duration: 19s;
+  animation-duration: 19s;
+}
+
+.speed-4 {
+  -webkit-animation-duration: 18s;
+  animation-duration: 18s;
+}
+
+.speed-5 {
+  -webkit-animation-duration: 16s;
+  animation-duration: 16s;
+}
+
+.speed-6 {
+  -webkit-animation-duration: 11s;
+  animation-duration: 11s;
 }
 
 
