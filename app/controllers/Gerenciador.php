@@ -123,29 +123,13 @@ class Gerenciador extends CI_Controller {
     if($game) {
       $data['game'] = $game;
 
-      if($game['engine'] == 1) {
+      $assets_where = array('game_questions.id_game' => $game['id_game']);
+      $assets = $this->main_model->get_game_questions($assets_where, null, 0, 'game_questions.id_asset', 'desc');
 
-        $assets_where = array('id_game' => $game['id_game'], 'type' => 1);
-        $images = $this->main_model->get_items('assets', $assets_where, null, 0, 'id_asset', 'desc');
-        if($images) $data['images'] = $images;
-
-        $assets_where = array('id_game' => $game['id_game'], 'type' => 2);
-        $audios = $this->main_model->get_items('assets', $assets_where, null, 0, 'id_asset', 'desc');
-        if($audios) $data['audios'] = $audios;
-
-      } else if($game['engine'] == 2) {
-        $assets_where = array('game_questions.id_game' => $game['id_game']);
-        $assets = $this->main_model->get_game_questions($assets_where, null, 0, 'game_questions.id_asset', 'desc');
-
-        if($assets) $data['assets'] = $assets;
-      }
+      if($assets) $data['assets'] = $assets;
     }
 
-    if($game['engine'] == 1) {
-      $this->template->load('pages-template', 'pages/content-game-engine-1', $data);
-    } else if($game['engine'] == 2) {
-      $this->template->load('pages-template', 'pages/content-game-engine-2', $data);
-    }
+    $this->template->load('pages-template', 'pages/content-game-engine-2', $data);
   }
 
   public function adicionar_asset($tipo = null)
@@ -180,11 +164,11 @@ class Gerenciador extends CI_Controller {
     $third_option = $this->input->post('third-option');
     $fourth_option = $this->input->post('fourth-option');
     $correct_answer = $this->input->post('correct-answer');
+    $images_options = $this->input->post('images-as-options');
 
     // Essa validação é apenas para a Engine 2 onde o usuário cadastra as alternativas
     // Ao contrário da Engine 1 que gera as alternativas de forma automatica e aleatoria.
-    if($question_options) {
-      $this->form_validation->set_rules('id_game', 'Imagem', 'required');
+    if($question_options && !$images_options) {
       $this->form_validation->set_rules('first-option', 'Cadastre a Alternativa A', 'required');
       $this->form_validation->set_rules('second-option', 'Cadastre a Alternativa B', 'required');
       $this->form_validation->set_rules('third-option', 'Cadastre a Alternativa C', 'required');
@@ -197,11 +181,12 @@ class Gerenciador extends CI_Controller {
       $user_folder = user_folder($this->uid);
       $game_folder = game_folder($id_game, $this->uid);
 
+      $this->load->library('upload');
+
       $config['upload_path'] = $game_folder;
       $config['allowed_types'] = 'png|jpg|jpeg';
-      $config['min_width'] = 16;
-
-      $this->load->library('upload', $config);
+      $config['min_width'] = 60;
+      $this->upload->initialize($config);
 
       if($this->upload->do_upload('game-asset')){
 
@@ -223,6 +208,48 @@ class Gerenciador extends CI_Controller {
           $flashdata['alert_message'] = 'A imagem foi adicionada com sucesso!';
 
           if($question_options) {
+
+            if($images_options) {
+
+              $this->upload->initialize($config);
+              if($this->upload->do_upload('first-option')) {
+
+                $question_image = $this->upload->data();
+                $first_option = $question_image['file_name'];
+
+                $this->_resize_question_image($question_image);
+              }
+
+              $this->upload->initialize($config);
+              if($this->upload->do_upload('second-option')) {
+
+                $question_image = $this->upload->data();
+                $second_option = $question_image['file_name'];
+
+                $this->_resize_question_image($question_image);
+              }
+
+              $this->upload->initialize($config);
+              if($this->upload->do_upload('third-option')) {
+
+                $question_image = $this->upload->data();
+                $third_option = $question_image['file_name'];
+
+                $this->_resize_question_image($question_image);
+              }
+
+              $this->upload->initialize($config);
+
+              if($this->upload->do_upload('fourth-option')) {
+
+                $question_image = $this->upload->data();
+                $fourth_option = $question_image['file_name'];
+
+                $this->_resize_question_image($question_image);
+              }
+
+            }
+
             $object_insert = array(
               'id_game' => $id_game,
               'id_asset' => $id_asset,
@@ -232,6 +259,8 @@ class Gerenciador extends CI_Controller {
               'fourth_option' => $fourth_option,
               'correct_answer' => $correct_answer
               );
+
+              if($images_options) $object_insert['type'] = 2;
 
             $save_question = $this->main_model->insert_item('game_questions', $object_insert);
 
@@ -283,6 +312,33 @@ class Gerenciador extends CI_Controller {
 
     $this->session->set_flashdata($flashdata);
     redirect(base_url('gerenciador/jogo/' . $id_game));
+  }
+
+  private function _resize_question_image($image = null) {
+    if(is_array($image) && isset($image['image_width']) && isset($image['image_height'])) {
+
+      $width_control = 400;
+      $height_control = 400;
+
+      if($image['image_width'] > $width_control || $image['image_height'] > $height_control) {
+        $this->load->library('image_lib');
+
+        $config['image_library'] = 'gd2';
+        $config['source_image'] = $image['full_path'];
+        $config['create_thumb'] = false;
+        $config['master_dim'] = 'width';
+        $config['maintain_ratio'] = true;
+        $config['width'] = $width_control;
+        $config['height'] = $width_control;
+
+        $this->image_lib->initialize($config);
+
+        $this->image_lib->resize();
+      }
+
+    } else {
+      return null;
+    }
   }
 
   private function _adicionar_audio()

@@ -28,7 +28,6 @@
 </div>
 
 <script>
-  var gameEngine = parseInt('<?= $game['engine']; ?>') || 0;
   var images = [];
   var sounds = [];
   var soundsAssets = {};
@@ -64,7 +63,8 @@
       <?php if($game['type'] == 1): ?>
       question['asset'] = '<?= $a->name; ?>';
       question['answers'] = ['<?= $a->first_option; ?>', '<?= $a->second_option; ?>', '<?= $a->third_option; ?>', '<?= $a->fourth_option; ?>'];
-      question['correct_answer'] = '<?= $a->correct_answer; ?>';
+      question['correct_answer'] = parseInt('<?= $a->correct_answer; ?>');
+      question['type'] = parseInt('<?= $a->type; ?>');
 
       questions[(Object.keys(questions).length + 1)] = question;
 

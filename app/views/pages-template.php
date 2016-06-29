@@ -30,5 +30,6 @@
     </section>
 </div>
 
+<script src="<?php echo base_url('public/js/main.js?v=' . md5(rand())); ?>"></script>
 </body>
 </html>

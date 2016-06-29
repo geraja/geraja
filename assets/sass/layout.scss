@@ -341,6 +341,58 @@ hr {
   }
 }
 
+/*
+|---------------------------------------------
+| Tabs -  game config
+|---------------------------------------------
+*/
+.tabs {
+  .tabs-control {
+    display: block;
+    width: 100%;
+
+    ul {
+      @include reset-list;
+
+      li {
+        display: inline-block;
+        background-color: #efefef;
+        border-top: 2px solid transparent;
+
+        .btn {
+          padding: 10px 30px;
+          background-color: transparent;
+
+          &:hover,
+          &:focus {
+            text-decoration: none;
+            outline: none;
+          }
+        }
+
+        &.active {
+          border-top-color: lighten($grey, 30%);
+          background-color: lighten(#fbdb65, 20%);
+        }
+      }
+    }
+  }
+
+  .tabs-content {
+    display: block;
+    width: 100%;
+    padding: 30px 0;
+    background-color: lighten(#fbdb65, 20%);
+
+    .tab-item {
+      display: none;
+
+      &.active {
+        display: block;
+      }
+    }
+  }
+}
 
 /*
 |---------------------------------------------
@@ -758,37 +810,7 @@ hr {
   }
 }
 
-.game-engine-1 {
-  .question-items {
-    img {
-      max-width: 32px;
-    }
-  }
-
-  .list-answers {
-    text-align: center;
-
-    li {
-      display: inline-block;
-
-      & + li {
-        margin-left: 80px;
-      }
-
-      .btn {
-        width: 120px;
-        padding: 20px 0px;
-        font-size: 2em;
-      }
-    }
-  }
-}
-
 .game-engine-2 {
-
-  .answers {
-    bottom: 60px;
-  }
 
   .question-items {
     img {
@@ -809,13 +831,24 @@ hr {
         vertical-align: middle;
         font-size: 1.4em;
       }
+
+      &.question-image {
+        .btn {
+          padding: 0;
+        }
+      }
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
     }
   }
 }
 
 .answers {
   position: absolute;
-  bottom: 40px;
+  bottom: 60px;
   width: 100%;
 
   .list-answers {
