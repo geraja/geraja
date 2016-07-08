@@ -163,6 +163,71 @@ class App extends CI_Controller {
   public function contato()
   {
     $data['page_title'] = 'Contato';
+
+    $send_contact = $this->input->post('send-contact');
+
+    if($send_contact) {
+      $user_name = $this->input->post('user-name');
+      $user_email = $this->input->post('user-email');
+      $subject = $this->input->post('subject');
+      $message = $this->input->post('message');
+
+      $this->form_validation->set_rules('user-name', 'Nome', 'trim|required');
+      $this->form_validation->set_rules('user-email', 'E-mail', 'trim|required');
+      $this->form_validation->set_rules('subject', 'Assunto', 'trim|required');
+      $this->form_validation->set_rules('message', 'Mensagem', 'trim|required');
+
+      $flashdata['alert_type'] = 'alert-danger';
+
+      if ($this->form_validation->run() == true) {
+        $send_email = true;
+
+        $this->load->library('email');
+
+        $this->email->from($user_email, $user_name);
+        $this->email->to('isanioweb@gmail.com');
+
+        $email_body = "<p>Contato realizado pelo site " . base_url() . '.</p>';
+        $email_body .= "<p><b>Nome:</b> $user_name<br>";
+        $email_body .= "<b>E-mail:</b> $user_email<br>";
+        $email_body .= "<b>Assunto:</b> $subject";
+        $email_body .= "</p>";
+        $email_body .= "<p>";
+        $email_body .= "<b>Mensagem:</b><br>";
+        $email_body .= "$message";
+        $email_body .= "</p>";
+
+        $this->load->library('email');
+        $config['protocol'] = 'sendmail';
+        $config['mailpath'] = '/usr/sbin/sendmail';
+        $config['charset'] = 'utf-8';
+        $config['mailtype'] = 'html';
+        $config['wordwrap'] = TRUE;
+
+        $this->email->initialize($config);
+
+        $this->email->from('no-reply@geraja.com.br', $user_name);
+        $this->email->reply_to($user_email, $user_name);
+        // $this->email->to('isanioweb@gmail.com');
+        $this->email->to('maryandrioli@gmail.com');
+        $this->email->subject('Novo mensagem da plataforma GeraJa');
+        $this->email->message($email_body);
+
+        if($this->email->send()) {
+          $flashdata['alert_type'] = 'alert-success';
+          $flashdata['alert_message'] = 'A sua mensagem foi enviada com sucesso!<br>Entraremos em contato em breve.';
+          $this->session->set_flashdata($flashdata);
+        } else {
+          $flashdata['alert_message'] = 'Desculpe, não foi possível enviar a mensagem, por favor tente novamente.';
+        }
+      } else {
+        $data['validation_errors'] = true;
+        $flashdata['alert_message'] = 'Preencha todos os campos.';
+      }
+
+      $this->session->set_flashdata($flashdata);
+    }
+
     $this->template->load('pages-template', 'pages/contact', $data);
   }
 
