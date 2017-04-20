@@ -536,6 +536,11 @@ class Gerenciador extends CI_Controller {
     }
   }
 
+public function admin() {
+  $data['page_title'] = 'Admin';
+  $this->template->load('pages-template', 'pages/admin', $data);
+}
+
 }
 
 /* End of file Gerenciador.php */
