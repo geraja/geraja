@@ -1,7 +1,7 @@
 <section class="page-section">
   <div class="row section-header">
     <div class="col-md-8">
-      <h1>Painel de controle</h1>
+      <h1>Meus Jogos</h1>
     </div>
     <div class="col-md-4">
       <a class="btn btn-green" href="<?= base_url('gerenciador/novo-jogo'); ?>">Criar novo jogo</a>
@@ -11,7 +11,7 @@
   <?php $this->load->view('partials/alert-message'); ?>
 
   <?php if(isset($games)): ?>
-    <p>Seus jogos (<?= count($games); ?>)</p>
+    <p>Total de jogos (<?= count($games); ?>)</p>
 
     <div class="table-reponsive">
       <table class="table">

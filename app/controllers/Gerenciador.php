@@ -16,7 +16,7 @@ class Gerenciador extends CI_Controller {
 
   public function index($offset = 1)
   {
-    $data['page_title'] = 'Painel de controle';
+    $data['page_title'] = 'Meus Jogos';
 
     // Configuração da paginação
     $per_pages = 30;
@@ -536,10 +536,37 @@ class Gerenciador extends CI_Controller {
     }
   }
 
-public function admin() {
-  $data['page_title'] = 'Admin';
-  $this->template->load('pages-template', 'pages/admin', $data);
-}
+  public function admin($page = 1) {
+    $data['page_title'] = 'Painel Administrativo';
+
+    // Configuração da paginação
+    $per_pages = 20;
+    $offset = $per_pages * ($page - 1);
+
+    $where = null;
+    $games = $this->main_model->get_items('games', $where, $per_pages, $offset, '', 'desc');
+
+    if($games) {
+      $data['games'] = $games;
+    }
+
+    $total_games = $this->main_model->get_total_items('games');
+    $data['total_games'] = $total_games;
+
+    $this->load->library('pagination');
+    $config['base_url'] = base_url('gerenciador/admin/') ;
+    $config['total_rows'] = $total_games;
+    $config['per_page'] = $per_pages;
+    $config['use_page_numbers'] = TRUE;
+    $config['num_links'] = 10;
+    $config['first_link'] = 'Início';
+    $config['last_link'] = 'Fim';
+
+    $this->pagination->initialize($config);
+    $data['pagination'] = $this->pagination->create_links();
+
+    $this->template->load('pages-template', 'pages/admin', $data);
+  }
 
 }
 

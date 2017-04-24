@@ -6,9 +6,9 @@
     <div class="col-md-10">
       <ul>
         <?php if($this->session->userdata('user')): ?>
-          <li><a href="<?= base_url('gerenciador'); ?>">Painel</a></li>
-          <li><a href="<?= base_url('gerenciador/minha-conta'); ?>">Minha conta</a></li>
           <li><a href="<?= base_url('gerenciador/admin'); ?>">Admin</a></li>
+          <li><a href="<?= base_url('gerenciador'); ?>">Meus Jogos</a></li>
+          <li><a href="<?= base_url('gerenciador/minha-conta'); ?>">Minha conta</a></li>
         <?php else: ?>
           <li><a href="<?= base_url('criar-conta'); ?>">Criar conta</a></li>
           <li><a href="<?= base_url('login'); ?>">Login</a></li>

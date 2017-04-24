@@ -52,7 +52,7 @@ hr {
 
 /* | Pages template | */
 .page-template {
-  background-color: $grey;
+  background-color: #A6E6D0;
 
   .container {
     background-color: #fff;
@@ -67,15 +67,39 @@ hr {
     & + .page-section { margin-top: 3em; }
   }
 
+  .form-search {
+    max-width: 225px;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    border: 1px solid #E9E9E9;
+    border-radius: 4px;
+    padding: 4px;
+  }
+
+  .form-search .field-search {
+    width: 185px;
+    height: 25px;
+    padding-left: 5px;
+    border: none;
+    font-size: 0.875em
+  }
+  .form-search .field-search:focus {
+    outline: none;
+  }
+
+  .form-search .button-search {
+    width: 26px;
+  }
+
   .container-games {
     .game-item {
       text-align: center;
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 
       &.game-type-1 {
         .game-thumb {
           .game-type-text {
             a {
-              background-color: $yellow;
+              background-color: #FFF;
             }
           }
         }
@@ -96,9 +120,12 @@ hr {
       }
 
       .game-thumb {
-        height: 140px;
+        // height: 170px;
         padding: 25px 0;
-        border: 1px solid #d8d8d8;
+        border-top: 1px solid #d8d8d8;
+        border-left: 1px solid #d8d8d8;
+        border-right: 1px solid #d8d8d8;
+        background-color: #EDF7F4;
 
         img {
           vertical-align: middle;
@@ -119,8 +146,13 @@ hr {
 
       .game-title {
         font-size: 1.1em;
-        margin-top: 10px;
+        height: 70px;
+        margin-top: 0px;
+        padding-top: 10px;
         font-weight: normal;
+        border-left: 1px solid #d8d8d8;
+        border-right: 1px solid #d8d8d8;
+        border-bottom: 1px solid #d8d8d8;
 
         a {
           @include reset-link;
@@ -212,6 +244,8 @@ hr {
 
   ul {
     @include reset-list;
+    background-color: #009688;
+    text-align: center;
 
     li {
       @include reset-list;
@@ -234,8 +268,7 @@ hr {
 
   .col-brand {
     text-align: center;
-    border-right: 1px solid #ef939c;
-    background-color: #A6E6D0;
+    background-color: #4DB6AC;
 
     .logo-brand {
       font-size: 1em;

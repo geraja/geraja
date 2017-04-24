@@ -1,6 +1,18 @@
 <section class="page-section">
-  <h1>Todos os jogos publicados (<?= $total_games; ?>):</h1>
+  <h1></h1>
+
   <?php if(isset($games)): ?>
+
+    <div class="row">
+      <div class="col-md-12">
+        <form action="" class="form-search center-block ">
+          <input type="text" class="field-search" placeholder="Ache seu jogo...">
+          <input type="image" src="<?= base_url('assets/images/search.png'); ?>"  class="pull-right button-search">
+        </form>
+      </div>
+    </div>
+
+    <br>
 
     <div class="container-games">
 
