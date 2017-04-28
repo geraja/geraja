@@ -13,13 +13,22 @@ A plataforma GeraJa tem como objetivo contribuir com a criação de atividades a
 
 ### Development ###
 
-Serve with browser sync
+Import the database tables from [https://www.dropbox.com/s/4papwpssmojwfwe/geraja-database.sql?dl=0](https://www.dropbox.com/s/4papwpssmojwfwe/geraja-database.sql?dl=0) into your localhost database
+
+Install the dependencies
+```bash
+cd path/to/
+npm install
+bower install
 ```
+
+Serve with browser sync
+```bash
 grunt
 ```
 
 Build
-```
+```bash
 grunt build
 ```
 
