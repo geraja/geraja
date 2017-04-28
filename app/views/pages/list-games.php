@@ -7,7 +7,7 @@
       <div class="col-md-12">
         <form action="" class="form-search center-block ">
           <input type="text" class="field-search" placeholder="Ache seu jogo...">
-          <input type="image" src="<?= base_url('assets/images/search.png'); ?>"  class="pull-right button-search">
+          <input type="image" src="<?= base_url('public/images/search.png'); ?>"  class="pull-right button-search">
         </form>
       </div>
     </div>
@@ -60,4 +60,3 @@
   <?php endif; ?>
 
 </section>
-
