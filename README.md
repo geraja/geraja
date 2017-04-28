@@ -2,28 +2,28 @@
 
 [https://geraja.com.br](https://geraja.com.br)
 
-### What is this repository for? ###
+A plataforma GeraJa tem como objetivo contribuir com a criação de atividades acessíveis para estudantes em geral, tanto por meio de jogos para ver, como para ouvir. Estudantes com deficiência física, visual ou mesmo intelectual podem jogar junto com quem tem ou não deficiência, em uma proposta que contempla o Desenho Universal para a Aprendizagem na escola regular.
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+### Install ###
 
-### How do I get set up? ###
+* [Node](https://nodejs.org)
+* [Grunt](https://gruntjs.com)
+* [Bower](https://bower.io)
+* [Sass](http://sass-lang.com/)
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+### Development ###
 
-### Contribution guidelines ###
+Serve with browser sync
+```
+grunt
+```
 
-* Writing tests
-* Code review
-* Other guidelines
+Build
+```
+grunt build
+```
 
-### Who do I talk to? ###
+### Documentation ###
 
-* Repo owner or admin
-* Other community or team contact
+* [Codeigniter](http://www.codeigniter.com/user_guide)
+* [Codeguide](http://codeguide.co/)
