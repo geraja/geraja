@@ -10,8 +10,14 @@ class Gerenciador extends CI_Controller {
     parent::__construct();
     $this->uid = $this->session->userdata('user');
 
-    error_reporting(-1);
-    ini_set('display_errors', 1);
+    if($this->_is_admin()) {
+      $this->session->set_userdata(array('is_admin' => true));
+    } else {
+      $this->session->unset_userdata('is_admin');
+    }
+
+    // error_reporting(-1);
+    // ini_set('display_errors', 1);
   }
 
   public function index($offset = 1)
@@ -537,6 +543,10 @@ class Gerenciador extends CI_Controller {
   }
 
   public function admin($page = 1) {
+    if(!$this->_is_admin()) {
+      redirect('gerenciador');
+    }
+
     $data['page_title'] = 'Painel Administrativo';
 
     // Configuração da paginação
@@ -566,6 +576,11 @@ class Gerenciador extends CI_Controller {
     $data['pagination'] = $this->pagination->create_links();
 
     $this->template->load('pages-template', 'pages/admin', $data);
+  }
+
+  private function _is_admin() {
+    $where = array('uid' => $this->uid);
+    return $this->main_model->get_item('users_admin', $where);
   }
 
 }

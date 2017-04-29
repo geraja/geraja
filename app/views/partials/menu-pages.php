@@ -6,7 +6,9 @@
     <div class="col-md-10">
       <ul>
         <?php if($this->session->userdata('user')): ?>
-          <li><a href="<?= base_url('gerenciador/admin'); ?>">Admin</a></li>
+          <?php if($this->session->userdata('is_admin')): ?>
+            <li><a href="<?= base_url('gerenciador/admin'); ?>">Admin</a></li>
+          <?php endif; ?>
           <li><a href="<?= base_url('gerenciador'); ?>">Meus Jogos</a></li>
           <li><a href="<?= base_url('gerenciador/minha-conta'); ?>">Minha conta</a></li>
         <?php else: ?>
