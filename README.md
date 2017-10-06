@@ -32,6 +32,10 @@ Build
 grunt build
 ```
 
+Default developer login:  
+**email**: admin_master@example.geraja.com  
+**password**: 741963  
+
 ### Documentation ###
 
 * [Codeigniter](http://www.codeigniter.com/user_guide)
