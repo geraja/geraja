@@ -42,4 +42,4 @@ Default developer login:
 * [Codeguide](http://codeguide.co/)
 
 ### Sobre ###
-No git hub, mencionar/acrescentar o seguinte: Projeto desenvolvido com financiamento da chamada chamada 17/2014, coordenado pela professora e pesquisadora associada Mary Grace Pereira Andrioli, posteriormente contando com o apoio da Engrenar no financiamento, testes e manutenção da plataforma.
+Projeto desenvolvido com financiamento da chamada chamada 17/2014, coordenado pela professora e pesquisadora associada Mary Grace Pereira Andrioli, posteriormente contando com o apoio da Engrenar no financiamento, testes e manutenção da plataforma.
